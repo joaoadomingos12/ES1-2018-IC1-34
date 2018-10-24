@@ -68,12 +68,13 @@ public class Gui extends JFrame {
 		textPane.setBounds(223, 81, 200, 245);
 		panel.add(textPane);
 
-		//myPicture = ImageIO.read(new File("C:\\Users\\Rafae\\git\\ES1-2018-IC1-34\\BomDiaAcademia\\Imagens\\logo.jpg"));		} catch (IOException e) {
+		myPicture = ImageIO.read(new File("C:\\Users\\Rafae\\git\\ES1-2018-IC1-34\\BomDiaAcademia\\Imagens\\logo.jpg"));	
+
 			// TODO Auto-generated catch block
 		System.out.println("pucho");
 			
 		JLabel logos =  new JLabel("New label");
-		//logos.setIcon(new ImageIcon(myPicture));
+		logos.setIcon(new ImageIcon(myPicture));
 		logos.setBounds(223, 48, 200, 36);
 		panel.add(logos);
 		
@@ -83,11 +84,21 @@ public class Gui extends JFrame {
 
 				textPane.setText(DefaultResultado.elementAt(list.getSelectedIndex()).getMessage());
 				if (DefaultResultado.elementAt(list.getSelectedIndex()).getTipo().equals("Facebook")) {
-					//myPicture = ImageIO.read(new File("C:\\Users\\Rafae\\git\\ES1-2018-IC1-34\\BomDiaAcademia\\Imagens\\facebook.jpg"));
+					try {
+						myPicture = ImageIO.read(new File("C:\\Users\\Rafae\\git\\ES1-2018-IC1-34\\BomDiaAcademia\\Imagens\\facebook.jpg"));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					logos.setIcon(new ImageIcon(myPicture));
 					
 				} else if (DefaultResultado.elementAt(list.getSelectedIndex()).getTipo().equals("Twitter")) {
-					//myPicture = ImageIO.read(new File("C:\\Users\\Rafae\\git\\ES1-2018-IC1-34\\BomDiaAcademia\\Imagens\\Twitter.jpg"));
+					try {
+						myPicture = ImageIO.read(new File("C:\\Users\\Rafae\\git\\ES1-2018-IC1-34\\BomDiaAcademia\\Imagens\\Twitter.jpg"));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					logos.setIcon(new ImageIcon(myPicture));
 				}
 
