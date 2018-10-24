@@ -12,12 +12,13 @@ public class BdaAcademia {
 		
 	}
 	
-	public void toConfig() throws JAXBException {
+	public Config toConfig() throws JAXBException {
         File file = new File("config.xml");
         JAXBContext jaxbContext = JAXBContext.newInstance(Config.class);
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
         cfg = (Config) unmarshaller.unmarshal(file);
         System.out.println(cfg);
+        return cfg;
 	}
 	
 }
