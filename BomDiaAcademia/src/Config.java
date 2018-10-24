@@ -21,6 +21,42 @@ public class Config {
 	//Twitter
 	@XmlElement(name="twtUser")
 	String twitterUser;
+	public String getFacebookUser() {
+		return facebookUser;
+	}
+
+	public String getFacebookToken() {
+		return facebookToken;
+	}
+
+	public String getFacebookAppId() {
+		return facebookAppId;
+	}
+
+	public String getFacebookSecret() {
+		return facebookSecret;
+	}
+
+	public String getTwitterUser() {
+		return twitterUser;
+	}
+
+	public String getTwitterToken() {
+		return twitterToken;
+	}
+
+	public String getTwitterKey() {
+		return twitterKey;
+	}
+
+	public String getTwitterSecret() {
+		return twitterSecret;
+	}
+
+	public String getTwitterTokenSecret() {
+		return twitterTokenSecret;
+	}
+
 	@XmlElement(name="twtToken")
 	String twitterToken;
 	@XmlElement(name="twtKey")
