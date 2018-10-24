@@ -5,6 +5,10 @@ import twitter4j.Twitter;
 import twitter4j.TwitterFactory;
 import twitter4j.conf.ConfigurationBuilder;
 
+/**
+ * 
+ *
+ */
 public class TwitterHandler {
 	
 	private String consumerKey;
@@ -13,10 +17,17 @@ public class TwitterHandler {
 	private String tokenSecret;
 	private Config cfg;
 	
+	/**
+	 * Construtor
+	 * @param cfg
+	 */
 	public TwitterHandler(Config cfg) {
 		this.cfg=cfg;	
 	}
 	
+	/**
+	 * Lista os tweets da timeline do utilizador
+	 */
 	public void listPosts() {
 		try {
 	    	ConfigurationBuilder cb = new ConfigurationBuilder();

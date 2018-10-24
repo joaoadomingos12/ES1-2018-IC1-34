@@ -4,7 +4,11 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.annotation.*;
-
+/**
+ * 
+ * Classe correspondente ao ficheiro de configuração config.xml
+ *
+ */
 @XmlRootElement
 public class Config {
 	
@@ -19,6 +23,7 @@ public class Config {
 	String facebookSecret;
 	
 	//Twitter
+
 	@XmlElement(name="twtUser")
 	String twitterUser;
 	public String getFacebookUser() {
@@ -76,6 +81,10 @@ public class Config {
 		twitterTokenSecret="icvTMMUofe6Qi6souL29VEOktCjN5W7XAW5ZtsxYZ2c4A";*/
 	}
 	
+	/**
+	 * Converte o objeto em ficheiro XML
+	 * @throws JAXBException
+	 */
 	public void toXML() throws JAXBException {
         JAXBContext jaxbContext = JAXBContext.newInstance(Config.class);
         Marshaller marshaller = jaxbContext.createMarshaller();

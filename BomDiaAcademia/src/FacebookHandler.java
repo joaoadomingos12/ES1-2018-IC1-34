@@ -16,18 +16,31 @@ import com.restfb.FacebookClient;
 import com.restfb.types.Post;
 
 
+/**
+ * Classe responsável pela ligação com o facebook
+ */
 public class FacebookHandler {
 	
 	private FacebookClient fbClient;
 	private Gui window ;
 	private Postt post;
 	private Date date;
-	
+
+	/**
+	 * Construtor
+	 * @param token
+	 * @param window
+	 */
 	public FacebookHandler(String token, Gui window){
 		this.window=window;
 		fbClient = new DefaultFacebookClient(token);
 	}
 	
+	
+	/**
+	 * Lista os posts do mural do utilizador
+	 * @param search
+	 */
 	public void listPosts(String search) {
 		Connection<Post> result = fbClient.fetchConnection("me/feed",Post.class);
 		System.out.println("\nPosts:");
