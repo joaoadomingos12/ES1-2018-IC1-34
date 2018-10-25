@@ -53,8 +53,7 @@ public class FacebookHandler {
 					post = new Postt (aPost.getId(),aPost.getMessage(),aPost.getCreatedTime(),"Facebook");
 			window.DefaultResultado.addElement(post);
 			
-			window.transform(window.DefaultResultado);
-			window.list.setModel(window.DefaultResultado);
+			
 				
 //			System.out.println(post.toString());
 //					System.out.println("---- Post "+ counter5 + " ----");
@@ -66,14 +65,18 @@ public class FacebookHandler {
 				}
 				counterTotal++;
 		}
+	
 	}
 		
 		
 		System.out.println(window.DefaultResultado.getSize()+ ",jkldasjlas");
-		window.list.setModel(window.DefaultResultado);
+//		window.list.setModel(window.DefaultResultado);
 		//fbClient5.publish(arg0, arg1, arg2);
 
 		System.out.println("-------------\nN� of Results: " + counter5+"/"+counterTotal);		
+		window.transform(window.DefaultResultado);
+		window.list.setModel(window.DefaultResultado);
 	}
+	
 	
 }

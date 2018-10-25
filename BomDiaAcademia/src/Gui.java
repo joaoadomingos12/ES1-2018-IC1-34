@@ -50,16 +50,17 @@ public class Gui extends JFrame {
 	public JList <Postt> list= new JList<Postt>();
 	private BufferedImage myPicture;
 	public JPanel panel;
+	public JScrollPane scrollPane;
 	public Gui() throws IOException {
 
 		
 		setTitle("Bom Dia Academia\r\n");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 567, 427);
+		setBounds(100, 100, 451, 375);
 		getContentPane().setLayout(null);
 
 		panel = new JPanel();
-		panel.setBounds(0, 0, 551, 388);
+		panel.setBounds(0, 0, 438, 339);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 
@@ -107,23 +108,23 @@ public class Gui extends JFrame {
 
 		list.setModel(DefaultResultado);
 
-		list.setBounds(10, 81, 200, 245);
+//		list.setBounds(10, 81, 200, 245);
 		panel.add(list);
 		
-		
-		/*JScrollPane scrollPane= new JScrollPane();
-
-		scrollPane.add(list);
-		panel.add(scrollPane);*/
+	
+		scrollPane= new JScrollPane(list);
+		scrollPane.setBounds(10, 81, 200, 245);
+		panel.add(scrollPane);
 	}
 
 	public DefaultListModel <Postt> transform (DefaultListModel model){
-
+		
 		for (int i = 0; i < model.size(); i++) {
 			res.add((Postt)model.get(i));
 		}
 		Collections.sort(res, Postt.comparador);
 		model.removeAllElements();
+		
 		for (Postt s : res) {
 			model.addElement(s);
 		}
