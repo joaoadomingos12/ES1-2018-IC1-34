@@ -10,13 +10,14 @@ public class BdaAcademia {
 	private Config cfg;
 	private FacebookHandler fbHandler;
 	private Gui gui;
+	private TwitterHandler twHandler;
 	
 	public BdaAcademia() throws IOException{
 		gui = new Gui();
 	}
 	
 	/**
-	 * Inicia a aplicação
+	 * Inicia a aplicaï¿½ï¿½o
 	 * @throws IOException
 	 */
 	public void start() throws IOException {
@@ -26,7 +27,9 @@ public class BdaAcademia {
 			cfg=toConfig();
 			 fbHandler= new FacebookHandler(cfg.getFacebookToken(),gui);
 			//System.out.println(cfg.getFacebookToken());
-			fbHandler.listPosts("ISCTE");
+			fbHandler.listPosts("dia");
+			twHandler = new TwitterHandler (cfg,gui);
+			twHandler.listPosts();
 			
 		} catch (JAXBException e) {
 			// TODO Auto-generated catch block

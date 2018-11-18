@@ -37,7 +37,7 @@ public class Postt  {
 	}
 	@Override
 	public String toString() {
-		return tipo+ ": " + message  +" data: " + data + "ID: " + ID;
+		return tipo+ ": " + message  +" data: " + data;
 	}
 
 

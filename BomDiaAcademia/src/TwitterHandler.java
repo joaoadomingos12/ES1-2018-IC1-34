@@ -51,11 +51,8 @@ public class TwitterHandler {
 				List<Status> statuses = twitter.getHomeTimeline();
 
 				for (Status st : statuses) {
-					System.out.println("pichoooo");
 					Postt a = new Postt (st.getUser().getName(), st.getText(),st.getCreatedAt(),"Twitter");
-					// Postt a=	new Postt ("aaa","sdad",new Date((Long) null),"asd");
 					window.DefaultResultado.addElement(a);
-					System.out.println(window.DefaultResultado.size() + "adslçjfdsl");
 				}
 
 
@@ -83,7 +80,6 @@ public class TwitterHandler {
 			} catch (Exception e) { System.out.println(e.getMessage()); }
 			System.out.println("aqui");
 
-			//	Postt a =new Postt ("aaa","sdad",new Date((Long) null),"asd");
 			//window.DefaultResultado.addElement(a);
 			window.transform(window.DefaultResultado);
 			window.list.setModel( window.DefaultResultado);
