@@ -51,8 +51,7 @@ public class EmailHandler {
 
 			// retrieve the messages from the folder in an array and print it
 			Message[] messages = emailFolder.getMessages();
-			System.out.println("messages.length---" + messages.length);
-			
+						
 			for(Message message : messages) {
 							
 				emails.add(new Postt(message.getFrom()[0].toString(),message.getSubject(),getTextFromMessage(message),
