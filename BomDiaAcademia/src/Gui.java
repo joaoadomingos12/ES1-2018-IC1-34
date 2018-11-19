@@ -63,7 +63,7 @@ public class Gui extends JFrame {
 		textPane.setBounds(301, 81, 200, 314);
 		panel.add(textPane);
 
-		myPicture = ImageIO.read(new File("C:\\Users\\Rafae\\git\\ES1-2018-IC1-34\\BomDiaAcademia\\Imagens\\logo.jpg"));	
+		myPicture = ImageIO.read(new File("./Imagens/logo.jpg"));	
 
 			// TODO Auto-generated catch block
 		System.out.println("pucho");
@@ -86,7 +86,7 @@ public class Gui extends JFrame {
 				textPane.setText(DefaultResultado.elementAt(list.getSelectedIndex()).getMessage());
 				if (DefaultResultado.elementAt(list.getSelectedIndex()).getTipo().equals("Facebook")) {
 					try {
-						myPicture = ImageIO.read(new File("C:\\Users\\Rafae\\git\\ES1-2018-IC1-34\\BomDiaAcademia\\Imagens\\facebook.jpg"));
+						myPicture = ImageIO.read(new File("./Imagens/facebook.jpg"));
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -106,7 +106,7 @@ public class Gui extends JFrame {
 					});
 					
 					try {
-						myPicture = ImageIO.read(new File("C:\\Users\\Rafae\\git\\ES1-2018-IC1-34\\BomDiaAcademia\\Imagens\\Twitter.jpg"));
+						myPicture = ImageIO.read(new File("./Imagens/Twitter.jpg"));
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

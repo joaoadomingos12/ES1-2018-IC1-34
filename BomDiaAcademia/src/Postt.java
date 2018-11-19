@@ -9,21 +9,32 @@ public class Postt  {
 	private String ID;
 	private long IDtwitter;
 	private String tipo;
+	private String from;
+	private String subject;
 	
 	
-	public Postt() {}
 	public Postt(String id,String msg,Date data, String tipo) {
 		this.ID=id;
 		this.message=msg;
 		this.data=data;	
 		this.tipo=tipo;
 	}
+	
 	public Postt(long id,String msg,Date data, String tipo) {
 		this.IDtwitter=id;
 		this.message=msg;
 		this.data=data;	
 		this.tipo=tipo;
 	}
+	
+	public Postt(String from,String subject, String msg,Date data, String tipo) {
+		this.subject=subject;
+		this.message=msg;
+		this.data=data;	
+		this.tipo=tipo;
+		this.from=from;
+	}
+	
 
 	
 
@@ -45,12 +56,15 @@ public class Postt  {
 
 
 
-	public void setID(String iD) {
-		ID = iD;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 	
 	@Override
 	public String toString() {
+		if(tipo.equals("Email")) {
+			return data.toString().substring(0,20)+tipo+":"+subject;
+		}
 		return data.toString().substring(0,20)+ " "+ (data.getYear()+1900) + tipo+ " : " + message;
 	}
 
@@ -83,6 +97,5 @@ public class Postt  {
 
 
 }
-
 
 

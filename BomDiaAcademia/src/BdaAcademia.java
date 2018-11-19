@@ -14,12 +14,15 @@ public class BdaAcademia {
 	private Gui gui;
 	private TwitterHandler twHandler;
 	public DefaultListModel <Postt> abcd = new DefaultListModel<Postt>();
+	private EmailHandler emailHandler;
+	
 	public BdaAcademia() throws IOException, JAXBException{
 		
 		cfg=toConfig();
 		twHandler = new TwitterHandler (cfg);
 		fbHandler= new FacebookHandler(cfg.getFacebookToken());
 		gui = new Gui(twHandler, fbHandler);
+		emailHandler=new EmailHandler(cfg.getEmail(),cfg.getPassword());
 	}
 	
 	/**
@@ -33,7 +36,7 @@ public class BdaAcademia {
 			twHandler = new TwitterHandler (cfg);
 			//addFB(fbHandler.listPosts("dia"));
 			addTT(twHandler.listPosts());
-			
+			addTT(emailHandler.listEmails());
 			gui.DefaultResultado = gui.transform(abcd);
 			gui.list.setModel(gui.DefaultResultado);
 			

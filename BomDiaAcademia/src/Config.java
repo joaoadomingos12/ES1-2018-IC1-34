@@ -6,7 +6,7 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.annotation.*;
 /**
  * 
- * Classe correspondente ao ficheiro de configuraï¿½ï¿½o config.xml
+ * Classe correspondente ao ficheiro de configuração config.xml
  *
  */
 @XmlRootElement
@@ -61,6 +61,18 @@ public class Config {
 	public String getTwitterTokenSecret() {
 		return twitterTokenSecret;
 	}
+	
+	
+
+	public String getEmail() {
+		return email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+
 
 	@XmlElement(name="twtToken")
 	String twitterToken;
@@ -71,14 +83,14 @@ public class Config {
 	@XmlElement(name="twtTokenSecret")
 	String twitterTokenSecret;
 	
+	@XmlElement(name="email")
+	String email;
+	@XmlElement(name="password")
+	String password;
+	
 	public Config(){
-		/*facebookUser="Joao Domingos";
-		facebookToken="EAAGVafw8IuIBAAnjw6VXhxLpAJ2Y1v1ZAEOHNbfegzMwYjJsip2WbLjrYKFPcllvJwEHdrToujttl5DMJwWpIeL06xTn4DM96ROvDgJW9uzAf8jKS8NUUlDoejxNnYaumAvTAHKuheE3xMFEVQBavrZAZBivrYZD";		
-		twitterUser="AcademiaBda";
-		twitterKey="axr8W68lwG2fYA2rvzt1GJmWF";
-		twitterSecret="KhJwPrDKlOaecH2OoHNdvAjh7CVuvmIW49xpSXeXcigf3omgAO";
-		twitterToken="1052285380026806272-NOPAb6y9KaVHi8mWvUqVboZCDRzj83";
-		twitterTokenSecret="icvTMMUofe6Qi6souL29VEOktCjN5W7XAW5ZtsxYZ2c4A";*/
+
+
 	}
 	
 	/**
@@ -95,3 +107,4 @@ public class Config {
 	
 	
 }
+
