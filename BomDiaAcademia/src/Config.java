@@ -6,7 +6,7 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.annotation.*;
 /**
  * 
- * Classe correspondente ao ficheiro de configuração config.xml
+ * Classe correspondente ao ficheiro de configuraï¿½ï¿½o config.xml
  *
  */
 @XmlRootElement

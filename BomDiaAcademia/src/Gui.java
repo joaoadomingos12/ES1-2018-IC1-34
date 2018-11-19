@@ -31,6 +31,7 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import javax.swing.JComboBox;
 
 public class Gui extends JFrame {
 	public DefaultListModel <Postt> DefaultResultado = new DefaultListModel<Postt>();
@@ -43,12 +44,10 @@ public class Gui extends JFrame {
 	private	long idRt;
 	private JTextField textField;
 	private FacebookHandler fb;
-	private boolean check=false;
-	
+	private String []saco = {"15m","30m","60m","2h","24h","72h"};
 	public Gui(TwitterHandler tt, FacebookHandler fb) throws IOException {
 		this.tt=tt;
 		this.fb=fb;
-		
 		setTitle("Bom Dia Academia\r\n");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 634, 518);
@@ -130,7 +129,7 @@ public class Gui extends JFrame {
 		panel.add(scrollPane);
 		
 		textField = new JTextField();
-		textField.setBounds(10, 48, 188, 20);
+		textField.setBounds(10, 48, 119, 20);
 		panel.add(textField);
 		textField.setColumns(10);
 		
@@ -144,13 +143,46 @@ public class Gui extends JFrame {
 		btnSearch.setBounds(202, 48, 89, 23);
 		panel.add(btnSearch);
 		
+		JComboBox comboBox = new JComboBox(saco);
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String aux = comboBox.getSelectedItem().toString();
+				int value = Integer.parseInt(aux.replaceAll("[^0-9]", ""));
+				if (value == 2) 
+					value =120;
+				if (value == 24) 
+					value = 1440;
+				if (value == 72) 
+					value = 4320;
+				
+				tt.tempo = value * 60 * 1000;
+				tt.abcd.clear();
+				addTT(tt.listPosts());
+			}
+		});
+		
+		comboBox.setBounds(132, 48, 60, 20);
+		panel.add(comboBox);
+		
 	}
 	
 	public void addFB(ArrayList <Postt> tu){
+		
 		for (int i=0;i<tu.size();i++) {
 			DefaultResultado.addElement(tu.get(i));
 		}
 		list.setModel(transform(DefaultResultado));
+	}
+	public void addTT(ArrayList <Postt> tu){
+//		for (int a =0 ; a < DefaultResultado.size();a++) {
+//			if (DefaultResultado.getElementAt(a).getTipo().equals("Twitter"))
+//				DefaultResultado.removeElementAt(a);
+//		}
+		DefaultResultado.removeAllElements();
+		for (int i=0;i<tu.size();i++) {
+			DefaultResultado.addElement(tu.get(i));
+		}
+	list.setModel(transform(DefaultResultado));
 	}
 	public DefaultListModel <Postt> transform (DefaultListModel model){
 		ArrayList <Postt> res = new ArrayList<Postt>();

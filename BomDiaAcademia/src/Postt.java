@@ -48,9 +48,10 @@ public class Postt  {
 	public void setID(String iD) {
 		ID = iD;
 	}
+	
 	@Override
 	public String toString() {
-		return data.toString().substring(0,20)+ tipo+ " : " + message;
+		return data.toString().substring(0,20)+ " "+ (data.getYear()+1900) + tipo+ " : " + message;
 	}
 
 	public String getID() {

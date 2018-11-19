@@ -26,7 +26,7 @@ public class TwitterHandler {
 
 	public ArrayList <Postt> abcd = new ArrayList<Postt>();
 	List<Status> statuses= new ArrayList<Status>();
-	private static final float TEN_MINUTES = 10 * 60 * 1000;
+	public float tempo = 5000 * 60 * 1000;
 	//<<<<<<< Upstream, based on branch 'master' of https://github.com/joaoadomingos12/ES1-2018-IC1-34.git
 
 	/**
@@ -64,18 +64,23 @@ public class TwitterHandler {
 
 
 		for (Status st : statuses) {
-			Postt a = new Postt (st.getId(), st.getText(),st.getCreatedAt(),"Twitter");
+			
 			//window.DefaultResultado.addElement(a);
-			abcd.add(a);
+			long tenAgo = (long) (System.currentTimeMillis() - tempo);
+			System.out.println(tenAgo + "tenago");
+			System.out.println(st.getCreatedAt().getTime()+ "1º tempo");
+    		if (st.getCreatedAt().getTime() >tenAgo) {
+    		    System.out.println("searchTimestamp is older than 10 minutes");
+    		    Postt a = new Postt (st.getId(), st.getText(),st.getCreatedAt(),"Twitter");
+    		    abcd.add(a);
+    		}
+			
 		}
 
 
-		/*for (Status a : statuses) {
-	        		long tenAgo = (long) (System.currentTimeMillis() - TEN_MINUTES);
-	        		if (a.getCreatedAt().getTime() >tenAgo) {
-	        		    System.out.println("searchTimestamp is older than 10 minutes");
-	        		}
-	        	}*/
+		for (Status a : statuses) {
+	        		
+	        	}
 		//	        System.out.println("------------------------\n Showing home timeline \n------------------------");
 		//			int counter=0;
 		//			int counterTotal = 0;

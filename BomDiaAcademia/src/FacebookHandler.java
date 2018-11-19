@@ -52,6 +52,7 @@ public class FacebookHandler {
 	for (Post aPost : page) {
 				// Filters only posts that contain the word "Inform"
 				if (aPost.getMessage() != null && aPost.getMessage().contains(search)) {
+					//aPost.get
 					post = new Postt (aPost.getId(),aPost.getMessage(),aPost.getCreatedTime(),"Facebook");
 			//window.DefaultResultado.addElement(post);
 					abcd.add(post);
@@ -72,7 +73,6 @@ public class FacebookHandler {
 	}
 		
 		
-		System.out.println(window.DefaultResultado.getSize()+ ",jkldasjlas");
 //		window.list.setModel(window.DefaultResultado);
 		//fbClient5.publish(arg0, arg1, arg2);
 
