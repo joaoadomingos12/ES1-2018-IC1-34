@@ -5,6 +5,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import twitter4j.TwitterException;
+
 import javax.swing.JTextField;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
@@ -31,42 +33,35 @@ import java.io.File;
 import java.io.IOException;
 
 public class Gui extends JFrame {
-
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Gui frame = new Gui();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	public FacebookHandler yaya;
 	public DefaultListModel <Postt> DefaultResultado = new DefaultListModel<Postt>();
-	public ArrayList <Postt> res = new ArrayList<Postt>();
+	
 	public JList <Postt> list= new JList<Postt>();
 	private BufferedImage myPicture;
 	public JPanel panel;
 	public JScrollPane scrollPane;
-	public Gui() throws IOException {
-
+	public TwitterHandler tt;
+	private	long idRt;
+	private JTextField textField;
+	private FacebookHandler fb;
+	private boolean check=false;
+	
+	public Gui(TwitterHandler tt, FacebookHandler fb) throws IOException {
+		this.tt=tt;
+		this.fb=fb;
 		
 		setTitle("Bom Dia Academia\r\n");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 451, 375);
+		setBounds(100, 100, 634, 518);
 		getContentPane().setLayout(null);
 
 		panel = new JPanel();
-		panel.setBounds(0, 0, 438, 339);
+		panel.setBounds(0, 0, 618, 450);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 
 		JTextPane textPane = new JTextPane();
 		textPane.setEditable(false);
-		textPane.setBounds(223, 81, 200, 245);
+		textPane.setBounds(301, 81, 200, 314);
 		panel.add(textPane);
 
 		myPicture = ImageIO.read(new File("C:\\Users\\Rafae\\git\\ES1-2018-IC1-34\\BomDiaAcademia\\Imagens\\logo.jpg"));	
@@ -76,13 +71,19 @@ public class Gui extends JFrame {
 			
 		JLabel logos =  new JLabel("New label");
 		logos.setIcon(new ImageIcon(myPicture));
-		logos.setBounds(223, 48, 200, 36);
+		logos.setBounds(301, 48, 200, 36);
 		panel.add(logos);
+		JButton btnNewButton = new JButton("Retweet");
+		
+		btnNewButton.setBounds(506, 81, 102, 29);
+		panel.add(btnNewButton);
+		btnNewButton.setVisible(false);
+		list.setBounds(1, 1, 266, 325);
 		
 		list.addMouseListener(new MouseAdapter() {
+			
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-
 				textPane.setText(DefaultResultado.elementAt(list.getSelectedIndex()).getMessage());
 				if (DefaultResultado.elementAt(list.getSelectedIndex()).getTipo().equals("Facebook")) {
 					try {
@@ -94,6 +95,17 @@ public class Gui extends JFrame {
 					logos.setIcon(new ImageIcon(myPicture));
 					
 				} else if (DefaultResultado.elementAt(list.getSelectedIndex()).getTipo().equals("Twitter")) {
+					 idRt = DefaultResultado.elementAt(list.getSelectedIndex()).getIDtwitter();
+					btnNewButton.setVisible(true);
+					
+					btnNewButton.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseClicked(MouseEvent arg0) {
+							System.out.println(idRt);
+							tt.retweet(idRt);
+						}
+					});
+					
 					try {
 						myPicture = ImageIO.read(new File("C:\\Users\\Rafae\\git\\ES1-2018-IC1-34\\BomDiaAcademia\\Imagens\\Twitter.jpg"));
 					} catch (IOException e) {
@@ -105,6 +117,7 @@ public class Gui extends JFrame {
 
 			}
 		});
+		
 
 		list.setModel(DefaultResultado);
 
@@ -113,12 +126,35 @@ public class Gui extends JFrame {
 		
 	
 		scrollPane= new JScrollPane(list);
-		scrollPane.setBounds(10, 81, 200, 245);
+		scrollPane.setBounds(10, 81, 281, 316);
 		panel.add(scrollPane);
-	}
-
-	public DefaultListModel <Postt> transform (DefaultListModel model){
 		
+		textField = new JTextField();
+		textField.setBounds(10, 48, 188, 20);
+		panel.add(textField);
+		textField.setColumns(10);
+		
+		JButton btnSearch = new JButton("Search");
+		btnSearch.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				addFB(fb.listPosts(textField.getText()));
+			}
+		});
+		btnSearch.setBounds(202, 48, 89, 23);
+		panel.add(btnSearch);
+		
+	}
+	
+	public void addFB(ArrayList <Postt> tu){
+		for (int i=0;i<tu.size();i++) {
+			DefaultResultado.addElement(tu.get(i));
+		}
+		list.setModel(transform(DefaultResultado));
+	}
+	public DefaultListModel <Postt> transform (DefaultListModel model){
+		ArrayList <Postt> res = new ArrayList<Postt>();
+		System.out.println("inicio" + model.size());
 		for (int i = 0; i < model.size(); i++) {
 			res.add((Postt)model.get(i));
 		}
@@ -128,6 +164,7 @@ public class Gui extends JFrame {
 		for (Postt s : res) {
 			model.addElement(s);
 		}
+		System.out.println("Fim"+model.size());
 		return model;
 
 	}

@@ -8,6 +8,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 
 import com.restfb.Connection;
@@ -17,7 +18,7 @@ import com.restfb.types.Post;
 
 
 /**
- * Classe responsável pela ligação com o facebook
+ * Classe responsï¿½vel pela ligaï¿½ï¿½o com o facebook
  */
 public class FacebookHandler {
 	
@@ -25,13 +26,14 @@ public class FacebookHandler {
 	private Gui window ;
 	private Postt post;
 	private Date date;
+	public ArrayList <Postt> abcd = new ArrayList<Postt>();
 
 	/**
 	 * Construtor
 	 * @param token
 	 * @param window
 	 */
-	public FacebookHandler(String token, Gui window){
+	public FacebookHandler(String token){
 		this.window=window;
 		fbClient = new DefaultFacebookClient(token);
 	}
@@ -41,7 +43,7 @@ public class FacebookHandler {
 	 * Lista os posts do mural do utilizador
 	 * @param search
 	 */
-	public void listPosts(String search) {
+	public ArrayList <Postt> listPosts(String search) {
 		Connection<Post> result = fbClient.fetchConnection("me/feed",Post.class);
 		System.out.println("\nPosts:");
 		int counter5 = 0;
@@ -51,7 +53,8 @@ public class FacebookHandler {
 				// Filters only posts that contain the word "Inform"
 				if (aPost.getMessage() != null && aPost.getMessage().contains(search)) {
 					post = new Postt (aPost.getId(),aPost.getMessage(),aPost.getCreatedTime(),"Facebook");
-			window.DefaultResultado.addElement(post);
+			//window.DefaultResultado.addElement(post);
+					abcd.add(post);
 			
 			
 				
@@ -74,8 +77,9 @@ public class FacebookHandler {
 		//fbClient5.publish(arg0, arg1, arg2);
 
 		System.out.println("-------------\nNï¿½ of Results: " + counter5+"/"+counterTotal);		
-		window.transform(window.DefaultResultado);
-		window.list.setModel(window.DefaultResultado);
+		//window.transform(window.DefaultResultado);
+		//window.list.setModel(window.DefaultResultado);
+		return abcd;
 	}
 	
 	

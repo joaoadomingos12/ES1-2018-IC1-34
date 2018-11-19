@@ -7,12 +7,19 @@ public class Postt  {
 	private String message;
 	private Date data;
 	private String ID;
+	private long IDtwitter;
 	private String tipo;
 	
 	
-
+	public Postt() {}
 	public Postt(String id,String msg,Date data, String tipo) {
 		this.ID=id;
+		this.message=msg;
+		this.data=data;	
+		this.tipo=tipo;
+	}
+	public Postt(long id,String msg,Date data, String tipo) {
+		this.IDtwitter=id;
 		this.message=msg;
 		this.data=data;	
 		this.tipo=tipo;
@@ -20,6 +27,12 @@ public class Postt  {
 
 	
 
+	public long getIDtwitter() {
+		return IDtwitter;
+	}
+	public void setIDtwitter(long iDtwitter) {
+		IDtwitter = iDtwitter;
+	}
 	public String getTipo() {
 		return tipo;
 	}
@@ -37,10 +50,8 @@ public class Postt  {
 	}
 	@Override
 	public String toString() {
-		return tipo+ ": " + message  +" data: " + data;
+		return data.toString().substring(0,20)+ tipo+ " : " + message;
 	}
-
-
 
 	public String getID() {
 		return ID;

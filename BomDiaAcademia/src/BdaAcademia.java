@@ -1,6 +1,8 @@
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
+import javax.swing.DefaultListModel;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
@@ -11,9 +13,13 @@ public class BdaAcademia {
 	private FacebookHandler fbHandler;
 	private Gui gui;
 	private TwitterHandler twHandler;
-	
-	public BdaAcademia() throws IOException{
-		gui = new Gui();
+	public DefaultListModel <Postt> abcd = new DefaultListModel<Postt>();
+	public BdaAcademia() throws IOException, JAXBException{
+		
+		cfg=toConfig();
+		twHandler = new TwitterHandler (cfg);
+		fbHandler= new FacebookHandler(cfg.getFacebookToken());
+		gui = new Gui(twHandler, fbHandler);
 	}
 	
 	/**
@@ -21,24 +27,24 @@ public class BdaAcademia {
 	 * @throws IOException
 	 */
 	public void start() throws IOException {
-		try {
 			
 			gui.setVisible(true);
-			cfg=toConfig();
-			 fbHandler= new FacebookHandler(cfg.getFacebookToken(),gui);
-			//System.out.println(cfg.getFacebookToken());
-			fbHandler.listPosts("dia");
-			twHandler = new TwitterHandler (cfg,gui);
-			twHandler.listPosts();
+		
+			twHandler = new TwitterHandler (cfg);
+			//addFB(fbHandler.listPosts("dia"));
+			addTT(twHandler.listPosts());
 			
-		} catch (JAXBException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			gui.DefaultResultado = gui.transform(abcd);
+			gui.list.setModel(gui.DefaultResultado);
+			
 	}
 	
 	
-	/**
+	public void addTT(ArrayList <Postt> tu){
+		for (int i=0;i<tu.size();i++) {
+			abcd.addElement(tu.get(i));
+		}
+	}/**
 	 * Transforma o objeto config num ficheiro XML
 	 * @return config
 	 * @throws JAXBException
