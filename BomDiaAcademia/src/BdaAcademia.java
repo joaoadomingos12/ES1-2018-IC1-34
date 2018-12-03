@@ -21,8 +21,9 @@ public class BdaAcademia {
 		cfg=toConfig();
 		twHandler = new TwitterHandler (cfg);
 		fbHandler= new FacebookHandler(cfg.getFacebookToken());
-		gui = new Gui(twHandler, fbHandler);
 		emailHandler=new EmailHandler(cfg.getEmail(),cfg.getPassword());
+		gui = new Gui(twHandler, fbHandler, emailHandler);
+		
 		abcd = new DefaultListModel<Postt>();
 	}
 	

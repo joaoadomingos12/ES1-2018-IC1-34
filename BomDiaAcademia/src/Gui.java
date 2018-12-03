@@ -1,8 +1,10 @@
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -46,9 +48,12 @@ public class Gui extends JFrame {
 	private JTextField textField;
 	private FacebookHandler fb;
 	private String []timeStamps = {"15m","30m","60m","2h","24h","72h"};
-	public Gui(TwitterHandler tt, FacebookHandler fb) throws IOException {
+
+	private EmailHandler em;
+	public Gui(TwitterHandler tt, FacebookHandler fb, EmailHandler em) throws IOException {
 		this.tt=tt;
 		this.fb=fb;
+		this.em=em;
 		setTitle("Bom Dia Academia\r\n");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 634, 518);
@@ -79,9 +84,16 @@ public class Gui extends JFrame {
 		panel.add(btnNewButton);
 		btnNewButton.setVisible(false);
 		list.setBounds(1, 1, 266, 325);
+		JButton btnReply = new JButton("Reply");
+		btnReply.setVisible(false);
+		
+		btnReply.setBounds(506, 122, 89, 23);
+		panel.add(btnReply);
 		
 		list.addMouseListener(new MouseAdapter() {
 			
+			
+
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				textPane.setText(DefaultResultado.elementAt(list.getSelectedIndex()).getMessage());
@@ -113,6 +125,17 @@ public class Gui extends JFrame {
 						e.printStackTrace();
 					}
 					logos.setIcon(new ImageIcon(myPicture));
+				}else if (DefaultResultado.elementAt(list.getSelectedIndex()).getTipo().equals("Email")) {
+					btnReply.setVisible(true);
+					btnReply.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseClicked(MouseEvent arg0) {
+//							int emailPos = DefaultResultado.elementAt(list.getSelectedIndex()).getPosition();
+//							em.reply(emailPos, "picho");
+//						
+						
+						}
+					});
 				}
 
 			}
@@ -165,6 +188,8 @@ public class Gui extends JFrame {
 		comboBox.setBounds(132, 48, 60, 20);
 		panel.add(comboBox);
 		
+		
+		
 	}
 	
 	public void addFB(ArrayList <Postt> tu){
@@ -204,4 +229,33 @@ public class Gui extends JFrame {
 		return model;
 
 	}
+
+	public class Frame extends JInternalFrame {
+
+		/**
+		 * Launch the application.
+		 */
+		public void main(String[] args) {
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						Frame frame = new Frame();
+						frame.setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+		}
+
+		/**
+		 * Create the frame.
+		 */
+		public Frame() {
+			setBounds(100, 100, 450, 300);
+
+		}
+
+	}
 }
+

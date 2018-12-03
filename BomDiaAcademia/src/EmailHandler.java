@@ -74,8 +74,8 @@ public class EmailHandler {
 			
 			
 			//close the store and folder objects
-			emailFolder.close(false);
-			store.close();		
+//			emailFolder.close(false);
+//			store.close();		
 
 		} catch (NoSuchProviderException e) {
 			e.printStackTrace();
