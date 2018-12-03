@@ -1,3 +1,4 @@
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,16 +14,16 @@ public class BdaAcademia {
 	private FacebookHandler fbHandler;
 	private Gui gui;
 	private TwitterHandler twHandler;
-	public DefaultListModel <Postt> abcd = new DefaultListModel<Postt>();
+	public DefaultListModel <Postt> abcd;
 	private EmailHandler emailHandler;
 	
 	public BdaAcademia() throws IOException, JAXBException{
-		
 		cfg=toConfig();
 		twHandler = new TwitterHandler (cfg);
 		fbHandler= new FacebookHandler(cfg.getFacebookToken());
 		gui = new Gui(twHandler, fbHandler);
 		emailHandler=new EmailHandler(cfg.getEmail(),cfg.getPassword());
+		abcd = new DefaultListModel<Postt>();
 	}
 	
 	/**

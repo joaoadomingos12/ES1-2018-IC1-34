@@ -1,3 +1,4 @@
+
 import java.util.Comparator;
 import java.util.Date;
 
@@ -11,6 +12,7 @@ public class Postt  {
 	private String tipo;
 	private String from;
 	private String subject;
+	private int position;
 	
 	
 	public Postt(String id,String msg,Date data, String tipo) {
@@ -27,12 +29,13 @@ public class Postt  {
 		this.tipo=tipo;
 	}
 	
-	public Postt(String from,String subject, String msg,Date data, String tipo) {
+	public Postt(String from,String subject, String msg,Date data, String tipo, int position) {
 		this.subject=subject;
 		this.message=msg;
 		this.data=data;	
 		this.tipo=tipo;
 		this.from=from;
+		this.position=position;
 	}
 	
 
@@ -54,7 +57,9 @@ public class Postt  {
 		this.tipo = tipo;
 	}
 
-
+	public int getPosition() {
+		return position;
+	}
 
 	public void setID(String ID) {
 		this.ID = ID;
@@ -91,7 +96,7 @@ public class Postt  {
 
 		@Override 
 		public int compare(Postt d, Postt d1) {
-			return d.getData().compareTo(d.getData());
+			return d.getData().compareTo(d1.getData());
 		};
 	};
 

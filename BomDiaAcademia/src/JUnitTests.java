@@ -28,4 +28,11 @@ public class JUnitTests {
     	assertNotNull(twHandler.listPosts());
     	
     }
+    
+    @Test
+    public void listFacebookPosts() {
+    	FacebookHandler fbHandler = new FacebookHandler(cfg.getFacebookToken());
+    	assertNotNull(fbHandler.listPosts("dia"));
+    	
+    }
 }

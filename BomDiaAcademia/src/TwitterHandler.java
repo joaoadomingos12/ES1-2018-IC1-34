@@ -1,3 +1,4 @@
+
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -78,9 +79,7 @@ public class TwitterHandler {
 		}
 
 
-		for (Status a : statuses) {
-	        		
-	        	}
+		
 		//	        System.out.println("------------------------\n Showing home timeline \n------------------------");
 		//			int counter=0;
 		//			int counterTotal = 0;

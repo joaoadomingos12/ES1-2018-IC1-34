@@ -1,3 +1,4 @@
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -44,7 +45,7 @@ public class Gui extends JFrame {
 	private	long idRt;
 	private JTextField textField;
 	private FacebookHandler fb;
-	private String []saco = {"15m","30m","60m","2h","24h","72h"};
+	private String []timeStamps = {"15m","30m","60m","2h","24h","72h"};
 	public Gui(TwitterHandler tt, FacebookHandler fb) throws IOException {
 		this.tt=tt;
 		this.fb=fb;
@@ -143,7 +144,7 @@ public class Gui extends JFrame {
 		btnSearch.setBounds(202, 48, 89, 23);
 		panel.add(btnSearch);
 		
-		JComboBox comboBox = new JComboBox(saco);
+		JComboBox comboBox = new JComboBox(timeStamps);
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String aux = comboBox.getSelectedItem().toString();
@@ -174,11 +175,14 @@ public class Gui extends JFrame {
 		list.setModel(transform(DefaultResultado));
 	}
 	public void addTT(ArrayList <Postt> tu){
-//		for (int a =0 ; a < DefaultResultado.size();a++) {
-//			if (DefaultResultado.getElementAt(a).getTipo().equals("Twitter"))
-//				DefaultResultado.removeElementAt(a);
-//		}
-		DefaultResultado.removeAllElements();
+	for (int a =0 ; a < DefaultResultado.size();a++) {
+		if (DefaultResultado.getElementAt(a).getTipo().equals("Twitter"))
+			//DefaultResultado.removeElementAt(a);
+		DefaultResultado.remove(a);
+	}
+	
+		
+		//DefaultResultado.removeAllElements();
 		for (int i=0;i<tu.size();i++) {
 			DefaultResultado.addElement(tu.get(i));
 		}
