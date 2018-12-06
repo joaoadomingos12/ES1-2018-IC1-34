@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <config>
-    <fbUser>Joao Domingos</fbUser>
-    <fbToken>EAAGVafw8IuIBAAnjw6VXhxLpAJ2Y1v1ZAEOHNbfegzMwYjJsip2WbLjrYKFPcllvJwEHdrToujttl5DMJwWpIeL06xTn4DM96ROvDgJW9uzAf8jKS8NUUlDoejxNnYaumAvTAHKuheE3xMFEVQBavrZAZBivrYZD</fbToken>
+    <fbUser>rAFAEL </fbUser>
+    <fbToken>EAACrDVgqVRUBABn4HKWwui0wQnR3dbRQigJQhVQ3uIKlJZAzZA8uxUH1FwkuAcjU5JMWuYzbJAFJrciXLDUCSvb0ZAQ9x5cfB21tVZB5kIdLZBZBJF27KATQdZCUSHp4ScN4oL6leKjC6tYsx3aWUnI1TZCI3210MBcygaoaKujcgxjAtgi0MXy3wOQAMIomasW8cT9MIPz9W0PZBoJHqZAjhi</fbToken>
     <twtUser>AcademiaBda</twtUser>
     <twtToken>1052285380026806272-NOPAb6y9KaVHi8mWvUqVboZCDRzj83</twtToken>
     <twtKey>axr8W68lwG2fYA2rvzt1GJmWF</twtKey>
     <twtSecret>KhJwPrDKlOaecH2OoHNdvAjh7CVuvmIW49xpSXeXcigf3omgAO</twtSecret>
     <twtTokenSecret>icvTMMUofe6Qi6souL29VEOktCjN5W7XAW5ZtsxYZ2c4A</twtTokenSecret>
-    <email>
-    	bomdiaacademia2@gmail.com
-    	</email><password>bdacademia#2018</password></config>
+    <email>bomdiaacademia2@gmail.com</email>
+    <password>bdacademia#2018</password>
+</config>

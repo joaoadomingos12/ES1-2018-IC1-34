@@ -45,6 +45,7 @@ public class FacebookHandler {
 	 * @param search
 	 */
 	public ArrayList <Postt> listPosts(String search) {
+		System.out.println("dkafhoawilksdhfoaklsjdflkjsadlkfjkkj");
 		Connection<Post> result = fbClient.fetchConnection("me/feed",Post.class);
 		System.out.println("\nPosts:");
 		int counter5 = 0;

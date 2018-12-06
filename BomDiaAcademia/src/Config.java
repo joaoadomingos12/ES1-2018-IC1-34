@@ -7,10 +7,11 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.annotation.*;
 /**
  * 
- * Classe correspondente ao ficheiro de configuração config.xml
+ * Classe correspondente ao ficheiro de configuraï¿½ï¿½o config.xml
  *
  */
 @XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Config {
 	
 	//Facebook
@@ -71,6 +72,52 @@ public class Config {
 
 	public String getPassword() {
 		return password;
+	}
+
+
+
+	public void setFacebookUser(String facebookUser) {
+		this.facebookUser = facebookUser;
+	}
+
+	public void setFacebookToken(String facebookToken) {
+		this.facebookToken = facebookToken;
+	}
+
+	public void setFacebookAppId(String facebookAppId) {
+		this.facebookAppId = facebookAppId;
+	}
+
+	public void setFacebookSecret(String facebookSecret) {
+		this.facebookSecret = facebookSecret;
+	}
+
+	public void setTwitterUser(String twitterUser) {
+		this.twitterUser = twitterUser;
+	}
+
+	public void setTwitterToken(String twitterToken) {
+		this.twitterToken = twitterToken;
+	}
+
+	public void setTwitterKey(String twitterKey) {
+		this.twitterKey = twitterKey;
+	}
+
+	public void setTwitterSecret(String twitterSecret) {
+		this.twitterSecret = twitterSecret;
+	}
+
+	public void setTwitterTokenSecret(String twitterTokenSecret) {
+		this.twitterTokenSecret = twitterTokenSecret;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 

@@ -28,8 +28,8 @@ public class EmailHandler {
 	private Message[] messages;
 	
 	public EmailHandler(String user, String password){
-		this.user = "bomdiaacademia2@gmail.com";
-		this.password = "bdacademia#2018";
+		this.user=user;
+		this.password=password;
 		emails=new ArrayList<Postt>();
 	}
 
