@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>TwitterHandler.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">JUnitTests (1) (07-Dec-2018 23:37:51)</a> &gt; <a href="../../index.html" class="el_group">BomDiaAcademia</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">BDA</a> &gt; <span class="el_source">TwitterHandler.java</span></div><h1>TwitterHandler.java</h1><pre class="source lang-java linenums">package BDA;
+
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.DefaultListModel;
+
+import twitter4j.Status;
+import twitter4j.Twitter;
+import twitter4j.TwitterException;
+import twitter4j.TwitterFactory;
+import twitter4j.conf.ConfigurationBuilder;
+
+/**
+ * 
+ *
+ */
+public class TwitterHandler {
+
+	private String consumerKey;
+	private String consumerSecret;
+	private String token;
+	private String tokenSecret;
+	private Config cfg;
+	private Twitter twitter;
+
+
+<span class="fc" id="L29">	public ArrayList &lt;Postt&gt; abcd = new ArrayList&lt;Postt&gt;();</span>
+<span class="fc" id="L30">	List&lt;Status&gt; statuses= new ArrayList&lt;Status&gt;();</span>
+<span class="fc" id="L31">	public float tempo = 5000 * 60 * 1000;</span>
+	//&lt;&lt;&lt;&lt;&lt;&lt;&lt; Upstream, based on branch 'master' of https://github.com/joaoadomingos12/ES1-2018-IC1-34.git
+
+	/**
+	 * Construtor
+	 * @param cfg
+	 */
+<span class="fc" id="L38">	public TwitterHandler(Config cfg) {</span>
+<span class="fc" id="L39">		this.cfg=cfg;	</span>
+<span class="fc" id="L40">		config();</span>
+<span class="fc" id="L41">	}</span>
+
+	/**
+	 * Lista os tweets da timeline do utilizador
+	 */
+	public void config () {
+		try {
+<span class="fc" id="L48">			ConfigurationBuilder cb = new ConfigurationBuilder();</span>
+<span class="fc" id="L49">			cb.setDebugEnabled(true)</span>
+<span class="fc" id="L50">			.setOAuthConsumerKey(cfg.getTwitterKey())</span>
+<span class="fc" id="L51">			.setOAuthConsumerSecret(cfg.getTwitterSecret())</span>
+<span class="fc" id="L52">			.setOAuthAccessToken(cfg.getTwitterToken())</span>
+<span class="fc" id="L53">			.setOAuthAccessTokenSecret(cfg.getTwitterTokenSecret());</span>
+<span class="fc" id="L54">			TwitterFactory tf = new TwitterFactory(cb.build());</span>
+<span class="fc" id="L55">			twitter = tf.getInstance();        		</span>
+
+<span class="fc" id="L57">			statuses = twitter.getHomeTimeline();</span>
+<span class="fc" id="L58">		}catch (Exception e) { System.out.println(e.getMessage()); </span>
+		}
+<span class="fc" id="L60">	}</span>
+	public ArrayList&lt;Postt&gt; listPosts() {
+
+
+<span class="pc bpc" id="L64" title="1 of 2 branches missed.">		for (Status st : statuses) {</span>
+			
+			//window.DefaultResultado.addElement(a);
+<span class="nc" id="L67">			long tenAgo = (long) (System.currentTimeMillis() - tempo);</span>
+<span class="nc" id="L68">			System.out.println(tenAgo + &quot;tenago&quot;);</span>
+<span class="nc" id="L69">			System.out.println(st.getCreatedAt().getTime()+ &quot;1Âº tempo&quot;);</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">    		if (st.getCreatedAt().getTime() &gt;tenAgo) {</span>
+<span class="nc" id="L71">    		    System.out.println(&quot;searchTimestamp is older than 10 minutes&quot;);</span>
+<span class="nc" id="L72">    		    Postt a = new Postt (st.getId(), st.getText(),st.getCreatedAt(),&quot;Twitter&quot;);</span>
+<span class="nc" id="L73">    		    abcd.add(a);</span>
+    		}
+			
+		}
+
+
+		
+		//	        System.out.println(&quot;------------------------\n Showing home timeline \n------------------------&quot;);
+		//			int counter=0;
+		//			int counterTotal = 0;
+		//	        for (Status status : statuses) {
+		//				// Filters only tweets from user &quot;catarina&quot;
+		//				if (status.getUser().getName() != null &amp;&amp; status.getUser().getName().contains(&quot;catarina&quot;)) {
+		//					System.out.println(status.getUser().getName() + &quot;:&quot; + status.getText());
+		//					counter++;
+		//				}
+		//				counterTotal++;
+		//	        }
+		//System.out.println(&quot;-------------\nNï¿½ of Results: &quot; + counter+&quot;/&quot;+counterTotal);
+
+<span class="fc" id="L93">		System.out.println(&quot;aqui&quot;);</span>
+
+		//window.transform(window.DefaultResultado);
+		//window.list.setModel( window.DefaultResultado);
+<span class="fc" id="L97">		return abcd;</span>
+
+	}
+	
+	/**
+	 * Função de retweet
+	 * @param id
+	 */
+	public void retweet(long id){
+		try {
+<span class="nc bnc" id="L107" title="All 2 branches missed.">			for (Status st : statuses) {</span>
+<span class="nc bnc" id="L108" title="All 2 branches missed.">				if (st.getId()==id) {</span>
+<span class="nc" id="L109">					twitter.retweetStatus(st.getId());</span>
+				}
+			}
+
+<span class="nc" id="L113">			} catch (TwitterException e) {</span>
+				// TODO Auto-generated catch block
+<span class="nc" id="L115">				e.printStackTrace();</span>
+			}
+<span class="nc" id="L117">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span>JUnitTests (1) (07-Dec-2018 23:37:51)</div></body></html>

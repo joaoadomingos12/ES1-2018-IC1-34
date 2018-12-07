@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Config.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">JUnitTests (1) (07-Dec-2018 23:37:51)</a> &gt; <a href="../../index.html" class="el_group">BomDiaAcademia</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">BDA</a> &gt; <span class="el_source">Config.java</span></div><h1>Config.java</h1><pre class="source lang-java linenums">package BDA;
+
+import java.io.File;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.annotation.*;
+/**
+ * 
+ * Classe correspondente ao ficheiro de configuraï¿½ï¿½o config.xml
+ *
+ */
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+public class Config {
+	
+	//Facebook
+	@XmlElement(name=&quot;fbUser&quot;)
+	String facebookUser;
+	@XmlElement(name=&quot;fbToken&quot;)
+	String facebookToken;
+	@XmlElement(name=&quot;fbAppId&quot;)
+	String facebookAppId;
+	@XmlElement(name=&quot;fbUser&quot;)
+	String facebookSecret;
+	
+	//Twitter
+
+	@XmlElement(name=&quot;twtUser&quot;)
+	String twitterUser;
+	public String getFacebookUser() {
+<span class="nc" id="L33">		return facebookUser;</span>
+	}
+
+	public String getFacebookToken() {
+<span class="fc" id="L37">		return facebookToken;</span>
+	}
+
+	public String getFacebookAppId() {
+<span class="nc" id="L41">		return facebookAppId;</span>
+	}
+
+	public String getFacebookSecret() {
+<span class="nc" id="L45">		return facebookSecret;</span>
+	}
+
+	public String getTwitterUser() {
+<span class="nc" id="L49">		return twitterUser;</span>
+	}
+
+	public String getTwitterToken() {
+<span class="fc" id="L53">		return twitterToken;</span>
+	}
+
+	public String getTwitterKey() {
+<span class="fc" id="L57">		return twitterKey;</span>
+	}
+
+	public String getTwitterSecret() {
+<span class="fc" id="L61">		return twitterSecret;</span>
+	}
+
+	public String getTwitterTokenSecret() {
+<span class="fc" id="L65">		return twitterTokenSecret;</span>
+	}
+	
+	
+
+	public String getEmail() {
+<span class="fc" id="L71">		return email;</span>
+	}
+
+	public String getPassword() {
+<span class="fc" id="L75">		return password;</span>
+	}
+
+
+
+	public void setFacebookUser(String facebookUser) {
+<span class="nc" id="L81">		this.facebookUser = facebookUser;</span>
+<span class="nc" id="L82">	}</span>
+
+	public void setFacebookToken(String facebookToken) {
+<span class="nc" id="L85">		this.facebookToken = facebookToken;</span>
+<span class="nc" id="L86">	}</span>
+
+	public void setFacebookAppId(String facebookAppId) {
+<span class="nc" id="L89">		this.facebookAppId = facebookAppId;</span>
+<span class="nc" id="L90">	}</span>
+
+	public void setFacebookSecret(String facebookSecret) {
+<span class="nc" id="L93">		this.facebookSecret = facebookSecret;</span>
+<span class="nc" id="L94">	}</span>
+
+	public void setTwitterUser(String twitterUser) {
+<span class="nc" id="L97">		this.twitterUser = twitterUser;</span>
+<span class="nc" id="L98">	}</span>
+
+	public void setTwitterToken(String twitterToken) {
+<span class="nc" id="L101">		this.twitterToken = twitterToken;</span>
+<span class="nc" id="L102">	}</span>
+
+	public void setTwitterKey(String twitterKey) {
+<span class="nc" id="L105">		this.twitterKey = twitterKey;</span>
+<span class="nc" id="L106">	}</span>
+
+	public void setTwitterSecret(String twitterSecret) {
+<span class="nc" id="L109">		this.twitterSecret = twitterSecret;</span>
+<span class="nc" id="L110">	}</span>
+
+	public void setTwitterTokenSecret(String twitterTokenSecret) {
+<span class="nc" id="L113">		this.twitterTokenSecret = twitterTokenSecret;</span>
+<span class="nc" id="L114">	}</span>
+
+	public void setEmail(String email) {
+<span class="nc" id="L117">		this.email = email;</span>
+<span class="nc" id="L118">	}</span>
+
+	public void setPassword(String password) {
+<span class="nc" id="L121">		this.password = password;</span>
+<span class="nc" id="L122">	}</span>
+
+
+
+	@XmlElement(name=&quot;twtToken&quot;)
+	String twitterToken;
+	@XmlElement(name=&quot;twtKey&quot;)
+	String twitterKey;
+	@XmlElement(name=&quot;twtSecret&quot;)
+	String twitterSecret;
+	@XmlElement(name=&quot;twtTokenSecret&quot;)
+	String twitterTokenSecret;
+	
+	@XmlElement(name=&quot;email&quot;)
+	String email;
+	@XmlElement(name=&quot;password&quot;)
+	String password;
+	
+<span class="fc" id="L140">	public Config(){</span>
+
+
+<span class="fc" id="L143">	}</span>
+	
+	/**
+	 * Converte o objeto em ficheiro XML
+	 * @throws JAXBException
+	 */
+	public void toXML() throws JAXBException {
+<span class="nc" id="L150">        JAXBContext jaxbContext = JAXBContext.newInstance(Config.class);</span>
+<span class="nc" id="L151">        Marshaller marshaller = jaxbContext.createMarshaller();</span>
+<span class="nc" id="L152">        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);</span>
+<span class="nc" id="L153">        marshaller.marshal(this, new File(&quot;config.xml&quot;));</span>
+<span class="nc" id="L154">        marshaller.marshal(this, System.out);</span>
+<span class="nc" id="L155">	}</span>
+	
+	
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span>JUnitTests (1) (07-Dec-2018 23:37:51)</div></body></html>

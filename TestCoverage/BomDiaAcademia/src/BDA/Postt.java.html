@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Postt.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">JUnitTests (1) (07-Dec-2018 23:37:51)</a> &gt; <a href="../../index.html" class="el_group">BomDiaAcademia</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">BDA</a> &gt; <span class="el_source">Postt.java</span></div><h1>Postt.java</h1><pre class="source lang-java linenums">package BDA;
+
+import java.io.Serializable;
+import java.util.Comparator;
+import java.util.Date;
+
+
+public class Postt  implements Serializable{
+
+	/**
+	 * Classe de conversão de emails, tweets e posts
+	 */
+	private static final long serialVersionUID = 1L;
+	private String message;
+	private Date data;
+	private String ID;
+	private long IDtwitter;
+	private String tipo;
+	private String from;
+	private String subject;
+	private int position;
+	
+	
+<span class="nc" id="L24">	public Postt(String id,String msg,Date data, String tipo) {</span>
+<span class="nc" id="L25">		this.ID=id;</span>
+<span class="nc" id="L26">		this.message=msg;</span>
+<span class="nc" id="L27">		this.data=data;	</span>
+<span class="nc" id="L28">		this.tipo=tipo;</span>
+<span class="nc" id="L29">	}</span>
+	
+<span class="nc" id="L31">	public Postt(long id,String msg,Date data, String tipo) {</span>
+<span class="nc" id="L32">		this.IDtwitter=id;</span>
+<span class="nc" id="L33">		this.message=msg;</span>
+<span class="nc" id="L34">		this.data=data;	</span>
+<span class="nc" id="L35">		this.tipo=tipo;</span>
+<span class="nc" id="L36">	}</span>
+	
+<span class="nc" id="L38">	public Postt(String from,String subject, String msg,Date data, String tipo, int position) {</span>
+<span class="nc" id="L39">		this.subject=subject;</span>
+<span class="nc" id="L40">		this.message=msg;</span>
+<span class="nc" id="L41">		this.data=data;	</span>
+<span class="nc" id="L42">		this.tipo=tipo;</span>
+<span class="nc" id="L43">		this.from=from;</span>
+<span class="nc" id="L44">		this.position=position;</span>
+<span class="nc" id="L45">	}</span>
+	
+
+	
+
+	public long getIDtwitter() {
+<span class="nc" id="L51">		return IDtwitter;</span>
+	}
+	public void setIDtwitter(long iDtwitter) {
+<span class="nc" id="L54">		IDtwitter = iDtwitter;</span>
+<span class="nc" id="L55">	}</span>
+	public String getTipo() {
+<span class="nc" id="L57">		return tipo;</span>
+	}
+
+
+
+	public void setTipo(String tipo) {
+<span class="nc" id="L63">		this.tipo = tipo;</span>
+<span class="nc" id="L64">	}</span>
+
+	public int getPosition() {
+<span class="nc" id="L67">		return position;</span>
+	}
+
+	public void setID(String ID) {
+<span class="nc" id="L71">		this.ID = ID;</span>
+<span class="nc" id="L72">	}</span>
+	
+	@Override
+	public String toString() {
+<span class="nc bnc" id="L76" title="All 2 branches missed.">		if(tipo.equals(&quot;Email&quot;)) {</span>
+<span class="nc" id="L77">			return data.toString().substring(0,20)+tipo+&quot;:&quot;+subject;</span>
+		}
+<span class="nc" id="L79">		return data.toString().substring(0,20)+ &quot; &quot;+ (data.getYear()+1900) + tipo+ &quot; : &quot; + message;</span>
+	}
+
+	public String getID() {
+<span class="nc" id="L83">		return ID;</span>
+	}
+	public String getMessage() {
+<span class="nc" id="L86">		return message;</span>
+	}
+	public void setMessage(String message) {
+<span class="nc" id="L89">		message = message;</span>
+<span class="nc" id="L90">	}</span>
+	public Date getData() {
+<span class="nc" id="L92">		return data;</span>
+	}
+	public void setData(Date data) {
+<span class="nc" id="L95">		this.data = data;</span>
+<span class="nc" id="L96">	}</span>
+	
+	
+
+/**
+ * Comparador de datas
+ */
+<span class="nc" id="L103">	public static final Comparator&lt;Postt&gt; comparador = new Comparator&lt;Postt&gt;() {</span>
+
+		@Override 
+		public int compare(Postt d, Postt d1) {
+<span class="nc" id="L107">			return d1.getData().compareTo(d.getData());</span>
+		};
+<span class="nc" id="L109">	};</span>
+
+
+}
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span>JUnitTests (1) (07-Dec-2018 23:37:51)</div></body></html>

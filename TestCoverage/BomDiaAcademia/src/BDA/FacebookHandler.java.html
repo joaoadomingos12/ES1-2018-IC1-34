@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>FacebookHandler.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">JUnitTests (1) (07-Dec-2018 23:37:51)</a> &gt; <a href="../../index.html" class="el_group">BomDiaAcademia</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">BDA</a> &gt; <span class="el_source">FacebookHandler.java</span></div><h1>FacebookHandler.java</h1><pre class="source lang-java linenums">package BDA;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
+
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+
+import com.restfb.Connection;
+import com.restfb.DefaultFacebookClient;
+import com.restfb.FacebookClient;
+import com.restfb.types.Post;
+
+
+/**
+ * Classe responsï¿½vel pela ligaï¿½ï¿½o com o facebook
+ */
+public class FacebookHandler {
+	
+	private FacebookClient fbClient;
+	private Gui window ;
+	private Postt post;
+	private Date date;
+<span class="fc" id="L31">	public ArrayList &lt;Postt&gt; abcd = new ArrayList&lt;Postt&gt;();</span>
+
+	/**
+	 * Construtor
+	 * @param token
+	 * @param window
+	 */
+<span class="fc" id="L38">	public FacebookHandler(String token){</span>
+<span class="fc" id="L39">		this.window=window;</span>
+<span class="fc" id="L40">		fbClient = new DefaultFacebookClient(token);</span>
+<span class="fc" id="L41">	}</span>
+	
+	
+	/**
+	 * Lista os posts do mural do utilizador
+	 * @param search
+	 */
+	public ArrayList &lt;Postt&gt; listPosts(String search) {
+<span class="fc" id="L49">		System.out.println(&quot;dkafhoawilksdhfoaklsjdflkjsadlkfjkkj&quot;);</span>
+<span class="nc" id="L50">		Connection&lt;Post&gt; result = fbClient.fetchConnection(&quot;me/feed&quot;,Post.class);</span>
+<span class="nc" id="L51">		System.out.println(&quot;\nPosts:&quot;);</span>
+<span class="nc" id="L52">		int counter5 = 0;</span>
+<span class="nc" id="L53">		int counterTotal = 0;</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">		for (List&lt;Post&gt; page : result) {</span>
+<span class="nc bnc" id="L55" title="All 2 branches missed.">	for (Post aPost : page) {</span>
+				// Filters only posts that contain the word &quot;Inform&quot;
+<span class="nc bnc" id="L57" title="All 4 branches missed.">				if (aPost.getMessage() != null &amp;&amp; aPost.getMessage().contains(search)) {</span>
+					//aPost.get
+<span class="nc" id="L59">					post = new Postt (aPost.getId(),aPost.getMessage(),aPost.getCreatedTime(),&quot;Facebook&quot;);</span>
+			//window.DefaultResultado.addElement(post);
+<span class="nc" id="L61">					abcd.add(post);</span>
+			
+			
+				
+//			System.out.println(post.toString());
+//					System.out.println(&quot;---- Post &quot;+ counter5 + &quot; ----&quot;);
+//					System.out.println(&quot;Id: &quot;+&quot;fb.com/&quot;+aPost.getId());
+//					System.out.println(&quot;Message: &quot;+aPost.getMessage());
+//					System.out.println(&quot;Created: &quot;+aPost.getCreatedTime());
+					
+<span class="nc" id="L71">					counter5++;</span>
+				}
+<span class="nc" id="L73">				counterTotal++;</span>
+		}
+	
+	}
+		
+		
+//		window.list.setModel(window.DefaultResultado);
+		//fbClient5.publish(arg0, arg1, arg2);
+
+<span class="nc" id="L82">		System.out.println(&quot;-------------\nNï¿½ of Results: &quot; + counter5+&quot;/&quot;+counterTotal);		</span>
+		//window.transform(window.DefaultResultado);
+		//window.list.setModel(window.DefaultResultado);
+<span class="nc" id="L85">		return abcd;</span>
+	}
+	
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span>JUnitTests (1) (07-Dec-2018 23:37:51)</div></body></html>

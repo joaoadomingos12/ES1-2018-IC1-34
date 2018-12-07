@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Gui.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">JUnitTests (1) (07-Dec-2018 23:37:51)</a> &gt; <a href="../../index.html" class="el_group">BomDiaAcademia</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">BDA</a> &gt; <span class="el_source">Gui.java</span></div><h1>Gui.java</h1><pre class="source lang-java linenums">package BDA;
+
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.border.EmptyBorder;
+import javax.xml.bind.JAXBException;
+import javax.swing.JTextField;
+import javax.imageio.ImageIO;
+import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JSplitPane;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.TextField;
+
+import javax.swing.JLabel;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.awt.event.ActionEvent;
+import javax.swing.JToolBar;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JTextPane;
+import javax.swing.JScrollPane;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.swing.JComboBox;
+import javax.swing.JDesktopPane;
+
+public class Gui extends JFrame {
+<span class="fc" id="L44">	public DefaultListModel &lt;Postt&gt; DefaultResultado = new DefaultListModel&lt;Postt&gt;();</span>
+	private Config cfg; 
+<span class="fc" id="L46">	JList &lt;Postt&gt; list= new JList&lt;Postt&gt;();</span>
+	private BufferedImage myPicture;
+	public JPanel panel;
+	public JScrollPane scrollPane;
+	public TwitterHandler tt;
+	private	long idRt;
+	private JTextField textField;
+	private FacebookHandler fb;
+<span class="fc" id="L54">	private String []timeStamps = {&quot;15m&quot;,&quot;30m&quot;,&quot;60m&quot;,&quot;2h&quot;,&quot;24h&quot;,&quot;72h&quot;};</span>
+	private BdaAcademia bda;
+
+	private EmailHandler em;
+<span class="fc" id="L58">		public Gui(BdaAcademia bda, TwitterHandler tt, FacebookHandler fb, EmailHandler em, Config cfg) throws IOException {</span>
+//	public Gui(EmailHandler em, Config cfg) throws IOException {
+<span class="fc" id="L60">			this.bda=bda;</span>
+<span class="fc" id="L61">		this.tt=tt;</span>
+<span class="fc" id="L62">		this.fb=fb;</span>
+<span class="fc" id="L63">		this.em=em;</span>
+<span class="fc" id="L64">		this.cfg = cfg;</span>
+<span class="fc" id="L65">		setTitle(&quot;Bom Dia Academia\r\n&quot;);</span>
+<span class="fc" id="L66">		JFrame jf=this;</span>
+<span class="fc" id="L67">		this.addWindowListener(new java.awt.event.WindowAdapter() {</span>
+		    @Override
+		    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+		    	
+<span class="nc bnc" id="L71" title="All 2 branches missed.">		        if (JOptionPane.showConfirmDialog(jf, </span>
+<span class="nc" id="L72">		            &quot;Quer gravar a lista para aceder mais tarde?&quot;, &quot;Sair&quot;,</span>
+<span class="nc" id="L73">		            JOptionPane.YES_NO_OPTION,</span>
+<span class="nc" id="L74">		            JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){</span>
+<span class="nc" id="L75">		        		bda.saveOnFile(DefaultResultado);</span>
+<span class="nc" id="L76">		        }else {</span>
+<span class="nc" id="L77">		        	 System.exit(0);</span>
+		        }
+<span class="nc" id="L79">		    }</span>
+		  
+		});
+<span class="fc" id="L82">		setBounds(100, 100, 634, 518);</span>
+<span class="fc" id="L83">		getContentPane().setLayout(null);</span>
+
+<span class="fc" id="L85">		panel = new JPanel();</span>
+<span class="fc" id="L86">		panel.setBounds(0, 0, 618, 450);</span>
+<span class="fc" id="L87">		getContentPane().add(panel);</span>
+<span class="fc" id="L88">		panel.setLayout(null);</span>
+
+<span class="fc" id="L90">		JTextPane textPane = new JTextPane();</span>
+<span class="fc" id="L91">		textPane.setEditable(false);</span>
+<span class="fc" id="L92">		textPane.setBounds(301, 81, 200, 314);</span>
+<span class="fc" id="L93">		panel.add(textPane);</span>
+
+<span class="fc" id="L95">		myPicture = ImageIO.read(new File(&quot;./Imagens/logo.jpg&quot;));	</span>
+
+		
+
+<span class="fc" id="L99">		JLabel logos =  new JLabel(&quot;New label&quot;);</span>
+<span class="fc" id="L100">		logos.setIcon(new ImageIcon(myPicture));</span>
+<span class="fc" id="L101">		logos.setBounds(301, 48, 200, 36);</span>
+<span class="fc" id="L102">		panel.add(logos);</span>
+<span class="fc" id="L103">		JButton btnNewButton = new JButton(&quot;Retweet&quot;);</span>
+
+<span class="fc" id="L105">		btnNewButton.setBounds(511, 81, 102, 29);</span>
+<span class="fc" id="L106">		panel.add(btnNewButton);</span>
+<span class="fc" id="L107">		btnNewButton.setVisible(false);</span>
+<span class="fc" id="L108">		list.setBounds(1, 1, 266, 325);</span>
+<span class="fc" id="L109">		JButton btnReply = new JButton(&quot;Reply&quot;);</span>
+<span class="fc" id="L110">		btnReply.setVisible(false);</span>
+
+<span class="fc" id="L112">		btnReply.setBounds(511, 122, 102, 23);</span>
+<span class="fc" id="L113">		panel.add(btnReply);</span>
+
+<span class="fc" id="L115">		list.addMouseListener(new MouseAdapter() {</span>
+
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+<span class="nc" id="L120">				textPane.setText(DefaultResultado.elementAt(list.getSelectedIndex()).getMessage());</span>
+<span class="nc bnc" id="L121" title="All 2 branches missed.">				if (DefaultResultado.elementAt(list.getSelectedIndex()).getTipo().equals(&quot;Facebook&quot;)) {</span>
+					try {
+<span class="nc" id="L123">						myPicture = ImageIO.read(new File(&quot;./Imagens/facebook.jpg&quot;));</span>
+<span class="nc" id="L124">					} catch (IOException e) {</span>
+						// TODO Auto-generated catch block
+<span class="nc" id="L126">						e.printStackTrace();</span>
+					}
+<span class="nc" id="L128">					logos.setIcon(new ImageIcon(myPicture));</span>
+
+<span class="nc bnc" id="L130" title="All 2 branches missed.">				} else if (DefaultResultado.elementAt(list.getSelectedIndex()).getTipo().equals(&quot;Twitter&quot;)) {</span>
+<span class="nc" id="L131">					idRt = DefaultResultado.elementAt(list.getSelectedIndex()).getIDtwitter();</span>
+<span class="nc" id="L132">					btnNewButton.setVisible(true);</span>
+
+<span class="nc" id="L134">					btnNewButton.addMouseListener(new MouseAdapter() {</span>
+						@Override
+						public void mouseClicked(MouseEvent arg0) {
+<span class="nc" id="L137">							System.out.println(idRt);</span>
+<span class="nc" id="L138">							tt.retweet(idRt);</span>
+<span class="nc" id="L139">						}</span>
+					});
+
+					try {
+<span class="nc" id="L143">						myPicture = ImageIO.read(new File(&quot;./Imagens/Twitter.jpg&quot;));</span>
+<span class="nc" id="L144">					} catch (IOException e) {</span>
+						// TODO Auto-generated catch block
+<span class="nc" id="L146">						e.printStackTrace();</span>
+					}
+<span class="nc" id="L148">					logos.setIcon(new ImageIcon(myPicture));</span>
+<span class="nc bnc" id="L149" title="All 2 branches missed.">				}else if (DefaultResultado.elementAt(list.getSelectedIndex()).getTipo().equals(&quot;Email&quot;)) {</span>
+<span class="nc" id="L150">					btnReply.setVisible(true);</span>
+<span class="nc" id="L151">					btnReply.addMouseListener(new MouseAdapter() {</span>
+						@Override
+						public void mouseClicked(MouseEvent arg0) {
+
+<span class="nc" id="L155">							JFrame internalFrame = new JFrame(&quot;New JInternalFrame&quot;);</span>
+<span class="nc" id="L156">							internalFrame.setVisible(true);</span>
+<span class="nc" id="L157">							internalFrame.setBounds(349, 148, 305, 194);</span>
+<span class="nc" id="L158">							internalFrame.getContentPane().setLayout(null);</span>
+<span class="nc" id="L159">							internalFrame.toFront();</span>
+<span class="nc" id="L160">							JTextField textField_1 = new JTextField();</span>
+<span class="nc" id="L161">							textField_1.setBounds(10, 24, 269, 104);</span>
+<span class="nc" id="L162">							internalFrame.getContentPane().add(textField_1);</span>
+<span class="nc" id="L163">							textField_1.setColumns(10);</span>
+
+<span class="nc" id="L165">							JButton btnEnviar = new JButton(&quot;Enviar&quot;);</span>
+<span class="nc" id="L166">							btnEnviar.addMouseListener(new MouseAdapter() {</span>
+								@Override
+								public void mouseClicked(MouseEvent e) {
+<span class="nc" id="L169">									int emailPos = DefaultResultado.elementAt(list.getSelectedIndex()).getPosition();</span>
+<span class="nc" id="L170">									em.reply(emailPos, textField_1.getText());</span>
+<span class="nc" id="L171">									internalFrame.dispose();</span>
+<span class="nc" id="L172">								}</span>
+							});
+<span class="nc" id="L174">							btnEnviar.setBounds(178, 130, 89, 23);</span>
+<span class="nc" id="L175">							internalFrame.getContentPane().add(btnEnviar);</span>
+
+<span class="nc" id="L177">							JButton btnCancelar = new JButton(&quot;Cancelar&quot;);</span>
+<span class="nc" id="L178">							btnCancelar.addMouseListener(new MouseAdapter() {</span>
+								@Override
+								public void mouseClicked(MouseEvent e) {
+<span class="nc" id="L181">									internalFrame.dispose();</span>
+<span class="nc" id="L182">								}</span>
+							});
+<span class="nc" id="L184">							btnCancelar.setBounds(79, 130, 89, 23);</span>
+<span class="nc" id="L185">							internalFrame.getContentPane().add(btnCancelar);</span>
+<span class="nc" id="L186">							internalFrame.setVisible(true);</span>
+
+<span class="nc" id="L188">						}</span>
+					});
+				}
+
+<span class="nc" id="L192">			}</span>
+		});
+
+
+<span class="fc" id="L196">		list.setModel(DefaultResultado);</span>
+
+<span class="fc" id="L198">		panel.add(list);</span>
+
+
+<span class="fc" id="L201">		scrollPane= new JScrollPane(list);</span>
+<span class="fc" id="L202">		scrollPane.setBounds(10, 81, 281, 316);</span>
+<span class="fc" id="L203">		panel.add(scrollPane);</span>
+
+<span class="fc" id="L205">		textField = new JTextField();</span>
+<span class="fc" id="L206">		textField.setBounds(10, 48, 119, 20);</span>
+<span class="fc" id="L207">		panel.add(textField);</span>
+<span class="fc" id="L208">		textField.setColumns(10);</span>
+
+<span class="fc" id="L210">		JButton btnSearch = new JButton(&quot;Search&quot;);</span>
+<span class="fc" id="L211">		btnSearch.addMouseListener(new MouseAdapter() {</span>
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+<span class="nc" id="L214">				addFB(fb.listPosts(textField.getText()));</span>
+<span class="nc" id="L215">			}</span>
+		});
+<span class="fc" id="L217">		btnSearch.setBounds(202, 48, 89, 23);</span>
+<span class="fc" id="L218">		panel.add(btnSearch);</span>
+
+<span class="fc" id="L220">		JComboBox comboBox = new JComboBox(timeStamps);</span>
+<span class="fc" id="L221">		comboBox.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L223">				String aux = comboBox.getSelectedItem().toString();</span>
+<span class="nc" id="L224">				int value = Integer.parseInt(aux.replaceAll(&quot;[^0-9]&quot;, &quot;&quot;));</span>
+<span class="nc bnc" id="L225" title="All 2 branches missed.">				if (value == 2) </span>
+<span class="nc" id="L226">					value =120;</span>
+<span class="nc bnc" id="L227" title="All 2 branches missed.">				if (value == 24) </span>
+<span class="nc" id="L228">					value = 1440;</span>
+<span class="nc bnc" id="L229" title="All 2 branches missed.">				if (value == 72) </span>
+<span class="nc" id="L230">					value = 4320;</span>
+
+<span class="nc" id="L232">				tt.tempo = value * 60 * 1000;</span>
+<span class="nc" id="L233">				tt.abcd.clear();</span>
+<span class="nc" id="L234">				addTT(tt.listPosts());</span>
+<span class="nc" id="L235">			}</span>
+		});
+
+<span class="fc" id="L238">		comboBox.setBounds(132, 48, 60, 20);</span>
+<span class="fc" id="L239">		panel.add(comboBox);</span>
+
+<span class="fc" id="L241">		JButton btnTokens = new JButton(&quot;Tokens&quot;);</span>
+<span class="fc" id="L242">		btnTokens.addMouseListener(new MouseAdapter() {</span>
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				try {
+<span class="nc" id="L246">					AuxPrincipal();</span>
+					
+					
+<span class="nc" id="L249">				} catch (IOException e) {</span>
+					// TODO Auto-generated catch block
+<span class="nc" id="L251">					e.printStackTrace();</span>
+				}
+
+<span class="nc" id="L254">			}</span>
+		});
+<span class="fc" id="L256">		btnTokens.setBounds(450, 14, 112, 23);</span>
+<span class="fc" id="L257">		panel.add(btnTokens);</span>
+
+<span class="fc" id="L259">		JInternalFrame internalFrame = new JInternalFrame(&quot;New JInternalFrame&quot;);</span>
+<span class="fc" id="L260">		internalFrame.setBounds(349, 148, 305, 194);</span>
+<span class="fc" id="L261">		panel.add(internalFrame);</span>
+<span class="fc" id="L262">		internalFrame.getContentPane().setLayout(null);</span>
+
+<span class="fc" id="L264">		JTextField textField_1 = new JTextField();</span>
+<span class="fc" id="L265">		textField_1.setBounds(10, 24, 269, 104);</span>
+<span class="fc" id="L266">		internalFrame.getContentPane().add(textField_1);</span>
+<span class="fc" id="L267">		textField_1.setColumns(10);</span>
+
+
+		
+
+
+
+
+<span class="fc" id="L275">	}</span>
+
+	public void addFB(ArrayList &lt;Postt&gt; tu){
+
+<span class="nc bnc" id="L279" title="All 2 branches missed.">		for (int i=0;i&lt;tu.size();i++) {</span>
+<span class="nc" id="L280">			DefaultResultado.addElement(tu.get(i));</span>
+		}
+<span class="nc" id="L282">		list.setModel(transform(DefaultResultado));</span>
+<span class="nc" id="L283">	}</span>
+	public void addTT(ArrayList &lt;Postt&gt; tu){
+<span class="nc bnc" id="L285" title="All 2 branches missed.">		for (int a =0 ; a &lt; DefaultResultado.size();a++) {</span>
+<span class="nc bnc" id="L286" title="All 2 branches missed.">			if (DefaultResultado.getElementAt(a).getTipo().equals(&quot;Twitter&quot;))</span>
+				//DefaultResultado.removeElementAt(a);
+<span class="nc" id="L288">				DefaultResultado.remove(a);</span>
+		}
+
+
+		//DefaultResultado.removeAllElements();
+<span class="nc bnc" id="L293" title="All 2 branches missed.">		for (int i=0;i&lt;tu.size();i++) {</span>
+<span class="nc" id="L294">			DefaultResultado.addElement(tu.get(i));</span>
+		}
+<span class="nc" id="L296">		list.setModel(transform(DefaultResultado));</span>
+<span class="nc" id="L297">	}</span>
+	public DefaultListModel &lt;Postt&gt; transform (DefaultListModel model){
+<span class="nc" id="L299">		ArrayList &lt;Postt&gt; res = new ArrayList&lt;Postt&gt;();</span>
+<span class="nc" id="L300">		System.out.println(&quot;inicio&quot; + model.size());</span>
+<span class="nc bnc" id="L301" title="All 2 branches missed.">		for (int i = 0; i &lt; model.size(); i++) {</span>
+<span class="nc" id="L302">			res.add((Postt)model.get(i));</span>
+		}
+<span class="nc" id="L304">		Collections.sort(res, Postt.comparador);</span>
+<span class="nc" id="L305">		model.removeAllElements();</span>
+
+<span class="nc bnc" id="L307" title="All 2 branches missed.">		for (Postt s : res) {</span>
+<span class="nc" id="L308">			model.addElement(s);</span>
+		}
+<span class="nc" id="L310">		System.out.println(&quot;Fim&quot;+model.size());</span>
+<span class="nc" id="L311">		return model;</span>
+
+	}
+
+	public void AuxPrincipal() throws IOException {
+		 JPanel contentPane;
+		 BufferedImage myPicture;
+		 
+<span class="nc" id="L319">		 JFrame frame = new JFrame();</span>
+<span class="nc" id="L320">	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="nc" id="L321">	frame.setBounds(100, 100, 343, 171);</span>
+<span class="nc" id="L322">	contentPane = new JPanel();</span>
+<span class="nc" id="L323">	contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));</span>
+<span class="nc" id="L324">	frame.setContentPane(contentPane);</span>
+<span class="nc" id="L325">	contentPane.setLayout(null);</span>
+	
+<span class="nc" id="L327">	JButton btnNewButton = new JButton(&quot;Facebook&quot;);</span>
+<span class="nc" id="L328">	btnNewButton.addMouseListener(new MouseAdapter() {</span>
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					try {
+<span class="nc" id="L332">						auxFb();</span>
+<span class="nc" id="L333">						frame.dispose();</span>
+<span class="nc" id="L334">					} catch (IOException e1) {</span>
+						// TODO Auto-generated catch block
+<span class="nc" id="L336">						e1.printStackTrace();</span>
+					}
+<span class="nc" id="L338">				}</span>
+			});
+<span class="nc" id="L340">	btnNewButton.addActionListener(new ActionListener() {</span>
+		public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L342">		}</span>
+	});
+<span class="nc" id="L344">	btnNewButton.setBounds(10, 74, 99, 31);</span>
+<span class="nc" id="L345">	contentPane.add(btnNewButton);</span>
+	
+<span class="nc" id="L347">	JButton btnEmail = new JButton(&quot;Email&quot;);</span>
+<span class="nc" id="L348">	btnEmail.addMouseListener(new MouseAdapter() {</span>
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			try {
+<span class="nc" id="L352">				auxEmail();</span>
+<span class="nc" id="L353">				frame.dispose();</span>
+<span class="nc" id="L354">			} catch (IOException e1) {</span>
+				// TODO Auto-generated catch block
+<span class="nc" id="L356">				e1.printStackTrace();</span>
+			}
+<span class="nc" id="L358">		}</span>
+	});
+<span class="nc" id="L360">	btnEmail.setBounds(113, 74, 99, 31);</span>
+<span class="nc" id="L361">	contentPane.add(btnEmail);</span>
+	
+<span class="nc" id="L363">	JButton btnTwitter = new JButton(&quot;Twitter&quot;);</span>
+<span class="nc" id="L364">	btnTwitter.setBounds(220, 74, 99, 31);</span>
+<span class="nc" id="L365">	contentPane.add(btnTwitter);</span>
+	
+<span class="nc" id="L367">	JLabel lblNewLabel = new JLabel(&quot;&quot;);</span>
+<span class="nc" id="L368">	myPicture = ImageIO.read(new File(&quot;./Imagens/logo.jpg&quot;));	</span>
+<span class="nc" id="L369">	lblNewLabel.setIcon(new ImageIcon(myPicture));</span>
+<span class="nc" id="L370">	lblNewLabel.setBounds(66, 11, 207, 36);</span>
+<span class="nc" id="L371">	contentPane.add(lblNewLabel);</span>
+<span class="nc" id="L372">	frame.setVisible(true);</span>
+<span class="nc" id="L373">}</span>
+	
+	
+	public void auxFb() throws IOException {
+
+		
+		JPanel contentPane;
+		JTextField textField;
+		JTextField textField_1;
+		BufferedImage myPicture;
+
+<span class="nc" id="L384">		JFrame frame2 = new JFrame();	</span>
+		
+<span class="nc" id="L386">		frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="nc" id="L387">		frame2.setBounds(100, 100, 309, 297);</span>
+<span class="nc" id="L388">		contentPane = new JPanel();</span>
+<span class="nc" id="L389">		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));</span>
+<span class="nc" id="L390">		frame2.setContentPane(contentPane);</span>
+<span class="nc" id="L391">		contentPane.setLayout(null);</span>
+
+<span class="nc" id="L393">		JLabel label = new JLabel(&quot;User&quot;);</span>
+<span class="nc" id="L394">		label.setFont(new Font(&quot;Montserrat SemiBold&quot;, Font.PLAIN, 14));</span>
+<span class="nc" id="L395">		label.setBounds(14, 81, 78, 39);</span>
+<span class="nc" id="L396">		contentPane.add(label);</span>
+
+<span class="nc" id="L398">		JLabel lblToken = new JLabel(&quot;Token&quot;);</span>
+<span class="nc" id="L399">		lblToken.setFont(new Font(&quot;Montserrat SemiBold&quot;, Font.PLAIN, 14));</span>
+<span class="nc" id="L400">		lblToken.setBounds(14, 131, 78, 39);</span>
+<span class="nc" id="L401">		contentPane.add(lblToken);</span>
+
+<span class="nc" id="L403">		textField = new JTextField();</span>
+<span class="nc" id="L404">		textField.setColumns(10);</span>
+<span class="nc" id="L405">		textField.setBounds(91, 86, 183, 30);</span>
+<span class="nc" id="L406">		contentPane.add(textField);</span>
+
+<span class="nc" id="L408">		textField_1 = new JPasswordField();</span>
+<span class="nc" id="L409">		textField_1.setColumns(10);</span>
+<span class="nc" id="L410">		textField_1.setBounds(91, 131, 183, 30);</span>
+<span class="nc" id="L411">		contentPane.add(textField_1);</span>
+
+<span class="nc" id="L413">		JButton button = new JButton(&quot;Cancelar&quot;);</span>
+<span class="nc" id="L414">		button.addMouseListener(new MouseAdapter() {</span>
+			@Override
+			public void mouseClicked(MouseEvent e) {
+<span class="nc" id="L417">				frame2.dispose();</span>
+<span class="nc" id="L418">			}</span>
+		});
+<span class="nc" id="L420">		button.setBounds(91, 181, 85, 30);</span>
+<span class="nc" id="L421">		contentPane.add(button);</span>
+
+<span class="nc" id="L423">		JButton button_1 = new JButton(&quot;Login&quot;);</span>
+<span class="nc" id="L424">		button_1.addMouseListener(new MouseAdapter() {</span>
+			@Override
+			public void mouseClicked(MouseEvent e) {
+<span class="nc" id="L427">				cfg.facebookUser = textField.getText();</span>
+<span class="nc" id="L428">				cfg.facebookToken = textField_1.getText();</span>
+				try {
+<span class="nc" id="L430">					cfg.toXML();</span>
+<span class="nc" id="L431">					dispose();</span>
+<span class="nc" id="L432">					BdaAcademia eu = new BdaAcademia();</span>
+<span class="nc" id="L433">					eu.start();</span>
+<span class="nc" id="L434">					frame2.dispose();</span>
+<span class="nc" id="L435">				} catch (JAXBException e1) {</span>
+					// TODO Auto-generated catch block
+<span class="nc" id="L437">					e1.printStackTrace();</span>
+<span class="nc" id="L438">				} catch (IOException e1) {</span>
+					// TODO Auto-generated catch block
+<span class="nc" id="L440">					e1.printStackTrace();</span>
+				}
+<span class="nc" id="L442">			}</span>
+		});
+<span class="nc" id="L444">		button_1.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L446">			}</span>
+		});
+<span class="nc" id="L448">		button_1.setBounds(186, 181, 85, 30);</span>
+<span class="nc" id="L449">		contentPane.add(button_1);</span>
+
+<span class="nc" id="L451">		JLabel label_2 = new JLabel();</span>
+<span class="nc" id="L452">		label_2.setBounds(55, 26, 200, 44);</span>
+<span class="nc" id="L453">		myPicture = ImageIO.read(new File(&quot;./Imagens/logo.jpg&quot;));	</span>
+
+		
+<span class="nc" id="L456">		label_2.setIcon(new ImageIcon(myPicture));</span>
+
+<span class="nc" id="L458">		contentPane.add(label_2);</span>
+<span class="nc" id="L459">		frame2.setVisible(true);</span>
+
+<span class="nc" id="L461">	}</span>
+	
+	
+
+
+	public void auxEmail() throws IOException  {
+		 JPanel contentPane;
+		 BufferedImage myPicture;
+		 JTextField textField;
+		 JTextField textField_1;
+		 
+<span class="nc" id="L472">		 JFrame frame = new JFrame ();</span>
+		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+<span class="nc" id="L474">		frame.setBounds(100, 100, 326, 322);</span>
+<span class="nc" id="L475">		contentPane = new JPanel();</span>
+<span class="nc" id="L476">		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));</span>
+<span class="nc" id="L477">		frame.setContentPane(contentPane);</span>
+<span class="nc" id="L478">		contentPane.setLayout(null);</span>
+		
+<span class="nc" id="L480">		JLabel lblUser = new JLabel(&quot;User&quot;);</span>
+<span class="nc" id="L481">		lblUser.setFont(new Font(&quot;Montserrat SemiBold&quot;, Font.PLAIN, 14));</span>
+<span class="nc" id="L482">		lblUser.setBounds(24, 87, 78, 39);</span>
+<span class="nc" id="L483">		contentPane.add(lblUser);</span>
+		
+<span class="nc" id="L485">		JLabel lblNewLabel = new JLabel();</span>
+<span class="nc" id="L486">		myPicture = ImageIO.read(new File(&quot;./Imagens/logo.jpg&quot;));	</span>
+<span class="nc" id="L487">		lblNewLabel.setBounds(38, 25, 262, 44);</span>
+		
+		// TODO Auto-generated catch block
+
+<span class="nc" id="L491">	lblNewLabel.setIcon(new ImageIcon(myPicture));</span>
+<span class="nc" id="L492">		contentPane.add(lblNewLabel);</span>
+		
+<span class="nc" id="L494">		textField = new JTextField();</span>
+<span class="nc" id="L495">		textField.setBounds(101, 92, 183, 30);</span>
+<span class="nc" id="L496">		contentPane.add(textField);</span>
+<span class="nc" id="L497">		textField.setColumns(10);</span>
+		
+<span class="nc" id="L499">		JLabel lblPassword = new JLabel(&quot;Password&quot;);</span>
+<span class="nc" id="L500">		lblPassword.setFont(new Font(&quot;Montserrat SemiBold&quot;, Font.PLAIN, 14));</span>
+<span class="nc" id="L501">		lblPassword.setBounds(24, 137, 78, 39);</span>
+<span class="nc" id="L502">		contentPane.add(lblPassword);</span>
+		
+<span class="nc" id="L504">		textField_1 = new JPasswordField();</span>
+<span class="nc" id="L505">		textField_1.setColumns(10);</span>
+<span class="nc" id="L506">		textField_1.setBounds(101, 137, 183, 30);</span>
+<span class="nc" id="L507">		contentPane.add(textField_1);</span>
+		
+<span class="nc" id="L509">		JButton btnNewButton = new JButton(&quot;Cancelar&quot;);</span>
+<span class="nc" id="L510">		btnNewButton.addMouseListener(new MouseAdapter() {</span>
+			@Override
+			public void mouseClicked(MouseEvent e) {
+<span class="nc" id="L513">				frame.dispose();</span>
+<span class="nc" id="L514">			}</span>
+		});
+		
+<span class="nc" id="L517">		btnNewButton.setBounds(101, 187, 85, 30);</span>
+<span class="nc" id="L518">		contentPane.add(btnNewButton);</span>
+		
+<span class="nc" id="L520">		JButton button = new JButton(&quot;Login&quot;);</span>
+<span class="nc" id="L521">		button.addMouseListener(new MouseAdapter() {</span>
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+<span class="nc" id="L524">				cfg.email = textField.getText();</span>
+<span class="nc" id="L525">				cfg.password= textField_1.getText();</span>
+				try {
+<span class="nc" id="L527">					cfg.toXML();</span>
+<span class="nc" id="L528">					dispose();</span>
+<span class="nc" id="L529">					BdaAcademia eu = new BdaAcademia();</span>
+<span class="nc" id="L530">					eu.start();</span>
+<span class="nc" id="L531">					frame.dispose();</span>
+<span class="nc" id="L532">				} catch (JAXBException e) {</span>
+					// TODO Auto-generated catch block
+<span class="nc" id="L534">					e.printStackTrace();</span>
+<span class="nc" id="L535">				} catch (IOException e) {</span>
+					// TODO Auto-generated catch block
+<span class="nc" id="L537">					e.printStackTrace();</span>
+				}
+<span class="nc" id="L539">			}</span>
+		});
+		
+<span class="nc" id="L542">		button.setBounds(196, 187, 85, 30);</span>
+<span class="nc" id="L543">		contentPane.add(button);</span>
+		
+		
+	
+		
+<span class="nc" id="L548">		frame.setVisible(true);</span>
+		
+	
+<span class="nc" id="L551">	}</span>
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span>JUnitTests (1) (07-Dec-2018 23:37:51)</div></body></html>

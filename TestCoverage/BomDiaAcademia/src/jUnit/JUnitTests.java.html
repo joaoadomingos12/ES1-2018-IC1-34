@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>JUnitTests.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">JUnitTests (1) (07-Dec-2018 23:37:51)</a> &gt; <a href="../../index.html" class="el_group">BomDiaAcademia</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">jUnit</a> &gt; <span class="el_source">JUnitTests.java</span></div><h1>JUnitTests.java</h1><pre class="source lang-java linenums">package jUnit;
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.io.IOException;
+
+import javax.xml.bind.JAXBException;
+
+import org.junit.jupiter.api.Test;
+
+import BDA.BdaAcademia;
+import BDA.Config;
+import BDA.EmailHandler;
+import BDA.FacebookHandler;
+import BDA.Gui;
+import BDA.TwitterHandler;
+import BDA.login;
+
+
+<span class="fc" id="L19">public class JUnitTests {</span>
+
+<span class="fc" id="L21">	Config cfg=new Config();</span>
+	BdaAcademia bda;
+<span class="fc" id="L23">	EmailHandler emailHandler = new EmailHandler(cfg.getEmail(),cfg.getPassword());</span>
+<span class="fc" id="L24">	FacebookHandler fbHandler = new FacebookHandler(cfg.getFacebookToken());</span>
+<span class="fc" id="L25">	TwitterHandler twHandler = new TwitterHandler(cfg);</span>
+	Gui gui;
+	
+	@Test
+	public void bdaTest(){
+		try {
+<span class="fc" id="L31">			bda = new BdaAcademia();</span>
+<span class="fc" id="L32">			gui= new Gui(bda, twHandler, fbHandler,emailHandler,cfg);</span>
+<span class="fc" id="L33">			assertNotNull(bda);</span>
+<span class="fc" id="L34">			assertEquals(true, bda.connIsAvailable());</span>
+<span class="pc" id="L35">		} catch (IOException e) {</span>
+			// TODO Auto-generated catch block
+<span class="nc" id="L37">			e.printStackTrace();</span>
+<span class="nc" id="L38">		} catch (JAXBException e) {</span>
+			// TODO Auto-generated catch block
+<span class="nc" id="L40">			e.printStackTrace();</span>
+		}
+<span class="fc" id="L42">	}</span>
+	
+	@Test
+	public void login() {
+		login lgn;
+		try {
+<span class="fc" id="L48">			lgn = new login();</span>
+<span class="fc" id="L49">			assertNotNull(lgn);</span>
+<span class="pc" id="L50">		} catch (IOException e) {</span>
+			// TODO Auto-generated catch block
+<span class="nc" id="L52">			e.printStackTrace();</span>
+		}
+		
+<span class="fc" id="L55">	}</span>
+	
+    @Test
+    public void listEmailsTest() {
+        // assert statements
+<span class="fc" id="L60">        assertNotNull( emailHandler.listEmails().size());</span>
+       
+<span class="fc" id="L62">    }</span>
+    
+    @Test
+    public void listTwitterPosts() {
+    	
+<span class="fc" id="L67">    	assertNotNull(twHandler.listPosts());</span>
+    	
+<span class="fc" id="L69">    }</span>
+    
+    @Test
+    public void listFacebookPosts() {
+    	
+<span class="nc" id="L74">    	assertNotNull(fbHandler.listPosts(&quot;dia&quot;));</span>
+    	
+<span class="nc" id="L76">    }</span>
+    
+    @Test
+    public void guiTest() {
+    	
+<span class="nc" id="L81">    	assertNotNull(gui);</span>
+    	
+<span class="nc" id="L83">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span>JUnitTests (1) (07-Dec-2018 23:37:51)</div></body></html>
