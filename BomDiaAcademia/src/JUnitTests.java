@@ -1,5 +1,3 @@
-
-
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.IOException;
@@ -16,7 +14,6 @@ public class JUnitTests {
 	EmailHandler emailHandler = new EmailHandler(cfg.getEmail(),cfg.getPassword());
 	FacebookHandler fbHandler = new FacebookHandler(cfg.getFacebookToken());
 	TwitterHandler twHandler = new TwitterHandler(cfg);
-	
 	Gui gui;
 	
 	@Test
