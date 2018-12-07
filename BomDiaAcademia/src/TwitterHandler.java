@@ -100,6 +100,11 @@ public class TwitterHandler {
 		return abcd;
 
 	}
+	
+	/**
+	 * Função de retweet
+	 * @param id
+	 */
 	public void retweet(long id){
 		try {
 			for (Status st : statuses) {

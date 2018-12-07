@@ -7,7 +7,7 @@ import java.util.Date;
 public class Postt  implements Serializable{
 
 	/**
-	 * 
+	 * Classe de conversão de emails, tweets e posts
 	 */
 	private static final long serialVersionUID = 1L;
 	private String message;
@@ -96,12 +96,14 @@ public class Postt  implements Serializable{
 	
 	
 
-
+/**
+ * Comparador de datas
+ */
 	public static final Comparator<Postt> comparador = new Comparator<Postt>() {
 
 		@Override 
 		public int compare(Postt d, Postt d1) {
-			return d.getData().compareTo(d1.getData());
+			return d1.getData().compareTo(d.getData());
 		};
 	};
 

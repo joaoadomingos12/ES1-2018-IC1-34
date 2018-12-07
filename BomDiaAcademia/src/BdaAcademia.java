@@ -25,6 +25,11 @@ public class BdaAcademia {
 	public DefaultListModel <Postt> abcd;
 	private EmailHandler emailHandler;
 	
+	/**
+	 * Construtor
+	 * @throws IOException
+	 * @throws JAXBException
+	 */
 	public BdaAcademia() throws IOException, JAXBException{
 		cfg=toConfig();
 		abcd = new DefaultListModel<Postt>();
@@ -59,6 +64,10 @@ public class BdaAcademia {
 	}
 	
 	
+	/**
+	 * Adiciona elementos ao modelo de lista
+	 * @param tu
+	 */
 	public void addTT(ArrayList <Postt> tu){
 		for (int i=0;i<tu.size();i++) {
 			abcd.addElement(tu.get(i));
@@ -83,6 +92,9 @@ public class BdaAcademia {
 			}
 		}
 		
+		/**
+		 * Lê posts guardados anteriormente em modo offline
+		 */
 		public void readFromFile() {
 			FileInputStream fis;
 			try {
@@ -104,6 +116,10 @@ public class BdaAcademia {
 		}
 		
 			
+		/**
+		 * Verifica se o existe ligação à internet
+		 * @return
+		 */
 			public boolean connIsAvailable() {
 			    try {
 			        final URL url = new URL("http://www.google.com");

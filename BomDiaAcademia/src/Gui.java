@@ -93,8 +93,7 @@ public class Gui extends JFrame {
 
 		myPicture = ImageIO.read(new File("./Imagens/logo.jpg"));	
 
-		// TODO Auto-generated catch block
-		System.out.println("pucho");
+		
 
 		JLabel logos =  new JLabel("New label");
 		logos.setIcon(new ImageIcon(myPicture));
@@ -452,8 +451,7 @@ public class Gui extends JFrame {
 		label_2.setBounds(55, 26, 200, 44);
 		myPicture = ImageIO.read(new File("./Imagens/logo.jpg"));	
 
-		// TODO Auto-generated catch block
-		System.out.println("pucho");
+		
 		label_2.setIcon(new ImageIcon(myPicture));
 
 		contentPane.add(label_2);

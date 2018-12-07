@@ -27,12 +27,21 @@ public class EmailHandler {
 	private ArrayList<Postt> emails;
 	private Message[] messages;
 	
+	/**
+	 * Construtor
+	 * @param user
+	 * @param password
+	 */
 	public EmailHandler(String user, String password){
 		this.user=user;
 		this.password=password;
 		emails=new ArrayList<Postt>();
 	}
 
+	/**
+	 * Lista os emails e adiciona-os à GUI
+	 * @return
+	 */
 	public ArrayList<Postt> listEmails() {
 		try {
 
@@ -88,6 +97,11 @@ public class EmailHandler {
 		return emails;
 	}
 
+	/**
+	 * Responder ao email selecionado
+	 * @param position
+	 * @param text
+	 */
 	public void reply(int position, String text) {
 		MimeMessage reply;
 		try {
@@ -102,7 +116,13 @@ public class EmailHandler {
 		}
 	}
 	
-	
+	/**
+	 * Obtem a mensagem do email a que se pretende responder
+	 * @param message
+	 * @return
+	 * @throws MessagingException
+	 * @throws IOException
+	 */
 	private String getTextFromMessage(Message message) throws MessagingException, IOException {
 	    String result = "";
 	    if (message.isMimeType("text/plain")) {
@@ -114,6 +134,13 @@ public class EmailHandler {
 	    return result;
 	}
 
+	/**
+	 * Função auxiliar
+	 * @param mimeMultipart
+	 * @return
+	 * @throws MessagingException
+	 * @throws IOException
+	 */
 	private String getTextFromMimeMultipart(
 	        MimeMultipart mimeMultipart)  throws MessagingException, IOException{
 	    String result = "";
