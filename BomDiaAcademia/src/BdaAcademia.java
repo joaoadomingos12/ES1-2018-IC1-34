@@ -104,7 +104,7 @@ public class BdaAcademia {
 		}
 		
 			
-			private boolean connIsAvailable() {
+			public boolean connIsAvailable() {
 			    try {
 			        final URL url = new URL("http://www.google.com");
 			        final URLConnection conn = url.openConnection();
