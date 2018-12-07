@@ -28,6 +28,7 @@ import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.JToolBar;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JTextPane;
 import javax.swing.JScrollPane;
 import java.awt.event.MouseAdapter;
@@ -50,16 +51,33 @@ public class Gui extends JFrame {
 	private JTextField textField;
 	private FacebookHandler fb;
 	private String []timeStamps = {"15m","30m","60m","2h","24h","72h"};
+	private BdaAcademia bda;
 
 	private EmailHandler em;
-		public Gui(TwitterHandler tt, FacebookHandler fb, EmailHandler em, Config cfg) throws IOException {
+		public Gui(BdaAcademia bda, TwitterHandler tt, FacebookHandler fb, EmailHandler em, Config cfg) throws IOException {
 //	public Gui(EmailHandler em, Config cfg) throws IOException {
+			this.bda=bda;
 		this.tt=tt;
 		this.fb=fb;
 		this.em=em;
 		this.cfg = cfg;
 		setTitle("Bom Dia Academia\r\n");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		JFrame jf=this;
+		this.addWindowListener(new java.awt.event.WindowAdapter() {
+		    @Override
+		    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+		    	
+		        if (JOptionPane.showConfirmDialog(jf, 
+		            "Quer gravar a lista para aceder mais tarde?", "Sair",
+		            JOptionPane.YES_NO_OPTION,
+		            JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
+		        		bda.saveOnFile(DefaultResultado);
+		        }else {
+		        	 System.exit(0);
+		        }
+		    }
+		  
+		});
 		setBounds(100, 100, 634, 518);
 		getContentPane().setLayout(null);
 
@@ -249,7 +267,7 @@ public class Gui extends JFrame {
 		textField_1.setColumns(10);
 
 
-
+		
 
 
 
@@ -470,7 +488,7 @@ public class Gui extends JFrame {
 		lblNewLabel.setBounds(38, 25, 262, 44);
 		
 		// TODO Auto-generated catch block
-	System.out.println("pucho");
+
 	lblNewLabel.setIcon(new ImageIcon(myPicture));
 		contentPane.add(lblNewLabel);
 		
@@ -524,6 +542,10 @@ public class Gui extends JFrame {
 		
 		button.setBounds(196, 187, 85, 30);
 		contentPane.add(button);
+		
+		
+	
+		
 		frame.setVisible(true);
 		
 	
